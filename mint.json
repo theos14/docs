@@ -1,91 +1,127 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Primer",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://primer.io/"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#ffa49b",
+    "light": "#ffa49b",
+    "dark": "#1b1a1a",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#ffa49b",
+      "to": "#ffa49b"
+    },
+    "background": {
+      "light": "#f9f5ff"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
+  "modeToggle": {
+    "default": "light"
+  },
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "Contact sales",
+    "url": "https://primer.io/contact-us",
+    "style": "roundedRectangle"
   },
+  "versions": ["v2.3","v2.2"],
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference"
+      "url": "docs/api/v2.3",
+      "version": "v2.3"
+    },
+    {
+      "name": "API Reference",
+      "url": "docs/api/v2.2",
+      "version": "v2.2"
     }
   ],
+  "font":{
+    "headings": {
+      "family": "Interdisplay",
+      "url": "https://cdn.prod.website-files.com/65bcc4714739c54deeb9bac7/675aeb4efaabe1ba38ca0132_InterDisplay-Medium.woff2",
+      "format": "woff2",
+      "weight": 500
+    }
+  },
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://primer.io/blog"
+    },
+    {
+      "name": "Case Studies",
+      "icon": "books",
+      "url": "https://primer.io/case-studies"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "",
+      "pages": ["docs/home"]
+    },
+    {
+      "group": "Payments",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "docs/payments",
+        "docs/payments/process-payments",
+        "docs/payments/primer-concepts",
+        "docs/payments/currencies",
+        {
+          "group": "Decline Codes",
+          "pages": [
+            "docs/payments/decline-codes/overview",
+            "docs/payments/decline-codes/mapping-standard"
+          ]
+        }
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Introduction",
+      "version": "v2.3",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "docs/api/v2.3/introduction/getting-started",
+        "docs/api/v2.3/introduction/authentication",
+        "docs/api/v2.3/introduction/api-responses"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "API Reference",
+      "version": "v2.3",
       "pages": [
-        "api-reference/introduction"
+        {
+          "group": "Client Session API",
+          "pages": ["docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"]
+        },
+        {
+          "group": "Loyalty API",
+          "pages": ["docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"]
+        }
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Introduction",
+      "version": "v2.2",
+      "pages": ["docs/api/v2.2/introduction/getting-started"]
+    },
+    {
+      "group": "API Reference",
+      "version": "v2.2",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        {
+          "group": "Loyalty API",
+          "pages": ["docs/api/v2.2/loyalty-api/get-loyalty-customer"]
+        }
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "youtube": "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
+    "linkedin": "https://www.linkedin.com/company/primerapi/"
   }
 }

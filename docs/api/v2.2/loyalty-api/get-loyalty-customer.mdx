@@ -1,0 +1,63 @@
+---
+title: Get a loyalty customer's points balance
+api: GET https://api.sandbox.primer.io/loyalty-customers/:id
+contentType: multipart/form-data
+description: "GET https://api.sandbox.primer.io/client-session"
+---
+
+The Loyalty API is currently in beta.
+
+Please contact our Support Team via our [JIRA Service Desk](https://primerapi.atlassian.net/servicedesk/customer/portal/11) for access to the Beta. If you don’t have access, please contact your account administrator for assistance.
+
+Not yet integrated with Primer and interested in learning more? [Contact us](https://primer.io/contact-us/).
+
+Create an API key with the `loyalty-transactions:read` scopes.
+
+Get a loyalty customer by ID and connection ID. This includes the customer’s points balance.
+
+The `connectionId` is the unique Primer identifier for your loyalty provider connection. Primer will provide this once the loyalty provider connection is created.
+
+The `customerId` refers to the customer identifier on the loyalty provider’s side.
+
+## Path Parameters
+<ParamField path="id" type="string" required> The unique identifier for the customer on the loyalty provider. </ParamField>
+## Query Parameters
+<ParamField query="connectionId" type="string" required> ID of the Primer connection configuration. </ParamField>
+## Response
+The endpoint returns an object with the following properties:
+
+<ResponseField name="id" type="string" optional> The unique identifier for the customer on the loyalty provider. </ResponseField> <ResponseField name="connectionId" type="string" optional> ID of the Primer connection configuration. </ResponseField> <ResponseField name="connectionName" type="string" optional> Name of the loyalty provider. </ResponseField> <ResponseField name="balance" type="integer" optional> The loyalty customer's points balance. </ResponseField>
+
+### Errors
+
+<ResponseField
+  name="400"
+  type="Bad Request"
+>
+<Expandable title="property">
+  This error returns an object with the following properties:
+
+<ResponseField name="error" type="object"> An object containing information about the error that occurred. <Expandable title="Error Properties"> <ResponseField name="errorId" type="string"> An error ID </ResponseField> <ResponseField name="description" type="string"> A human readable description of the error </ResponseField> <ResponseField name="diagnosticsId" type="string" optional> An ID that you can quote when contacting the Primer support team via our JIRA Service Desk. </ResponseField> <ResponseField name="validationErrors" type="array" optional> Returned in case of a badly formed request. Contains a list of maps from strings to any value. </ResponseField> </Expandable> </ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<RequestExample>
+  ```json 200 Retrieved
+  {}
+  ```
+  ```json 400 Bad Request
+  {
+  "error": {
+    "errorId": "string",
+    "description": "string",
+    "diagnosticsId": "string",
+    "validationErrors": [
+      {
+        "string": {}
+      }
+    ]
+  }
+}
+  ```
+</RequestExample>

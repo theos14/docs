@@ -1,0 +1,71 @@
+---
+title: Mapping Standard
+---
+
+## Primer's Unified Mapping Standard
+
+_Date last updated: 13th November 2023_
+
+We unify the decline codes across all processors and payment methods we integrate with so you only have to understand them in one way.
+
+This guide will outline how we map issuer decline reasons.
+
+<Info>
+  [See here for an overview of what decline codes are and how they're defined on Primer.](/docs/payments/decline-codes/overview)
+</Info>
+
+### How does Primer approach this?
+
+Where possible, we map our decline reasons to the raw response codes that the issuers provide that are defined by the card networks (e.g. Visa and Mastercard).
+
+If the raw response code isn’t returned by the processor, we use the processor response code.
+
+### Mapping Standard
+
+_Only showing for Mastercard & Visa._
+
+| Raw response code | Card Network(s) | Decline Type | Decline Reason |
+| --- | --- | --- | --- |
+| 01: Refer to card issuer | Mastercard | `SOFT_DECLINE` | `REFER_TO_CARD_ISSUER` |
+| 03: Invalid merchant | Mastercard  <br/>Visa | `HARD_DECLINE` | `ERROR` |
+| 04: Pickup card (no fraud) \[Visa\] / Capture card \[Mastercard\] | Mastercard  <br/>Visa | `HARD_DECLINE` | `LOST_OR_STOLEN_CARD` |
+| 05: Do not honor | Mastercard  <br/>Visa | `SOFT_DECLINE` | `DO_NOT_HONOR` |
+| 07: Pickup card, special conditions | Visa | `HARD_DECLINE` | `LOST_OR_STOLEN_CARD` |
+| 12: Invalid transaction | Mastercard  <br/>Visa | `HARD_DECLINE` | `ERROR` |
+| 13: Invalid amount | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 14: Invalid card number | Mastercard  <br/>Visa | `HARD_DECLINE` | `INVALID_CARD_NUMBER` |
+| 15: No such issuer | Mastercard  <br/>Visa | `HARD_DECLINE` | `ERROR` |
+| 19: Re-enter transaction | Visa | `SOFT_DECLINE` | `ISSUER_TEMPORARILY_UNAVAILABLE` |
+| 30: Format error | Mastercard | `SOFT_DECLINE` | `DECLINED` |
+| 41: (Pickup card) lost card | Mastercard  <br/>Visa | `HARD_DECLINE` | `LOST_OR_STOLEN_CARD` |
+| 43: (Pickup card) stolen card | Mastercard  <br/>Visa | `HARD_DECLINE` | `LOST_OR_STOLEN_CARD` |
+| 46: Closed Account | Visa | `HARD_DECLINE` | `ERROR` |
+| 51: Insufficient funds / Not Sufficient Funds | Mastercard  <br/>Visa | `SOFT_DECLINE` | `INSUFFICIENT_FUNDS` |
+| 54: Expired card / Expiration date missing | Mastercard  <br/>Visa | `HARD_DECLINE` | `EXPIRED_CARD` |
+| 57: Transaction not permitted to issuer/cardholder | Mastercard  <br/>Visa | `HARD_DECLINE` | `ERROR` |
+| 58: Transaction not permitted to acquirer | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 59: Suspected fraud | Visa | `HARD_DECLINE` | `SUSPECTED_FRAUD` |
+| 61: Exceeds withdrawal amount limit(s) / Exceeds approval amount limit | Mastercard  <br/>Visa | `SOFT_DECLINE` | `WITHDRAWAL_LIMIT_EXCEEDED` |
+| 62: Restricted card | Mastercard  <br/>Visa | `HARD_DECLINE` | `ERROR` |
+| 63: Security violation | Mastercard | `SOFT_DECLINE` | `REFER_TO_CARD_ISSUER` |
+| 65: Exceeds Withdrawal Frequency Limit | Mastercard  <br/>Visa | `SOFT_DECLINE` | `WITHDRAWAL_LIMIT_EXCEEDED` |
+| 65: Authentication required | Mastercard | `SOFT_DECLINE` | `AUTHENTICATION_REQUIRED` |
+| 70: Contact card issuer | Mastercard | `SOFT_DECLINE` | `REFER_TO_CARD_ISSUER` |
+| 76: Invalid/non-existent “To Account” specified | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 77: Invalid/non-existent “From Account” specified | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 78: Invalid/nonexistent account specified (general) | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 78: Blocked, first used | Visa | `SOFT_DECLINE` | `REFER_TO_CARD_ISSUER` |
+| 79: Lifecycle | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 82: Policy | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 83: Fraud / Security | Mastercard | `HARD_DECLINE` | `SUSPECTED_FRAUD` |
+| 84: Invalid Authorization Lifecycle | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 88: Cryptographic failure | Mastercard | `HARD_DECLINE` | `ERROR` |
+| 91: Issuer unavailable or switch inoperative | Mastercard  <br/>Visa | `SOFT_DECLINE` | `ISSUER_TEMPORARILY_UNAVAILABLE` |
+| 92: Unable to route transaction | Mastercard | `SOFT_DECLINE` | `DECLINED` |
+| 93: Transaction cannot be completed; violation of law | Visa | `HARD_DECLINE` | `ERROR` |
+| 96: System malfunction | Mastercard  <br/>Visa | `SOFT_DECLINE` | `ISSUER_TEMPORARILY_UNAVAILABLE` |
+| R0: Stop Payment Order | Visa | `HARD_DECLINE` | `ERROR` |
+| R1: Revocation of Authorization Order | Visa | `HARD_DECLINE` | `ERROR` |
+| R3: Revocation of all authorization orders | Visa | `HARD_DECLINE` | `ERROR` |
+| N7: Decline for CVV2 Failure | Visa | `HARD_DECLINE` | `ERROR` |
+| 1A: Additional Customer Authentication Required (Europe only) | Visa | `SOFT_DECLINE` | `AUTHENTICATION_REQUIRED` |

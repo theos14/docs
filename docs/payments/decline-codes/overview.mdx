@@ -1,0 +1,168 @@
+---
+title: Overview
+---
+
+## What are decline codes?
+
+When you create a payment via Primer, the request is sent to your chosen processor based on your payment workflows.
+
+<Info>
+  [See here for how to process payments on Primer](/docs/payments/process-payments).
+</Info>
+
+If the payment is not successful, the processor will return decline fields outlining why the payment was unsuccessful.
+
+There are different reasons for payments being declined, such as:
+
+* Technical issues with the processor or payment method
+* Processor rejects the payment (typically due to fraud prevention rules)
+* Issuing bank declines the payment
+
+Each processor has a very different way of responding and handling decline codes, which is where Primer comes in. We abstract this complexity and unify all the different decline code mappings into a single, standardized way of reasoning about declined payments.
+
+<Info>
+  [See here for Primer’s unified decline mapping standard and how we map from raw response codes.](/docs/payments/decline-codes/mapping-standard)
+</Info>
+### Why are decline codes important?
+
+Understanding why a payment is not authorized is crucial, serving as a key communication tool between payment systems, issuers, merchants and end customers.
+
+They offer clarity and guidance when your payments encounter issues, enabling you to devise a strategy to achieve:
+
+* **Enhanced customer experience** \- understanding the specific reason can help cardholders take appropriate action
+* **Improved fraud prevention** \- help protect cardholders from unauthorized charges and your business from chargeback fees
+* **Boost payment success** \- optimize your authorization rates by analyzing decline reasons and identifying areas of improvement
+
+### Decline codes on Primer
+
+Below are the fields you need to consider when evaluating why a payment wasn’t successful:
+
+| Field | Description | Payment Object fields |
+| --- | --- | --- |
+| Payment Status | The status of the payment | `status`  <br/>`transactions[x].processorStatus` |
+| Decision Type | The decision behind why the payment was not successful | `statusReason.type`  <br/>`transactions[x].processorStatusReason.type` |
+| Decline Type | Determines if the payment had a soft or hard decline when the decision type is `ISSUER_DECLINED` | `statusReason.declineType`  <br/>`transactions[x].processorStatusReason.declineType` |
+| Decline Reason | The decline reason if the decision type is `ISSUER_DECLINED` | `statusReason.code`  <br/>`transactions[x].processorStatusReason.code` |
+| Error Message | The error message provided by the processor | `statusReason.message`  <br/>`transactions[x].processorStatusReason.message` |
+
+<Info>
+**What is the difference between the payment and transaction fields?**
+
+A Primer payment can have multiple processor transactions.
+
+* The payment fields represent the latest/final values
+* The transaction fields represent the values for that specific processor transaction
+</Info>
+
+These fields are returned in the API response, as well as being included in the payment status webhook. For example:
+
+```json JSON
+{
+    "id": "oWSlcuulG",
+    "date": "2023-11-01T13:04:15.704780",
+    "status": "DECLINED",
+        ...
+    "statusReason": {
+        "type": "ISSUER_DECLINED",
+        "declineType": "SOFT_DECLINE",
+        "code": "ISSUER_TEMPORARILY_UNAVAILABLE",
+        "message": "Processor Network Unavailable - Try Again"
+    },
+    "transactions": [
+        {
+            "date": "2023-10-25T12:23:20.568943",
+                        ...
+            "processorStatus": "DECLINED",
+            "processorStatusReason": {
+                "type": "ISSUER_DECLINED",
+                "declineType": "SOFT_DECLINE",
+                "code": "ISSUER_TEMPORARILY_UNAVAILABLE",
+                "message": "Processor Network Unavailable - Try Again"
+            }
+        }
+    ]
+}
+```
+
+### Payment Status
+
+There are three possible payment statuses for unsuccessful payments:
+
+| Status | Description |
+| --- | --- |
+| `FAILED` | There is a technical problem that prevents the payment from being processed. |
+| `DECLINED` | The payment was processed and declined by one of the parties in the chain, such as the processor or card issuer. |
+| `CANCELLED` | The payment was canceled by the end customer. This is only used for some APMs.  <br/>  <br/>_Otherwise, CANCELLED is used when you choose to cancel an authorized payment._ |
+
+<Info>
+  [See here for a detailed breakdown of all of Primer’s payment statuses and how the state machine works](/docs/payments/primer-concepts#payment-lifecycle).
+</Info>
+
+### Decision Type
+
+There are 3 possible decision types behind why a payment is unsuccessful:
+
+| Decision Type | Description |
+| --- | --- |
+| `APPLICATION_ERROR` | There is a technical problem that prevents the payment from being processed. This will only ever have `status` = `FAILED`. |
+| `GATEWAY_REJECTED` | The processor has rejected the payment and has not sent it downstream to be processed. |
+| `ISSUER_DECLINED` | The processor sent the payment to be processed but the card issuer has declined the payment. |
+
+### Decline Type
+
+There are two types of issuer declines:
+
+| Decline Type | Description |
+| --- | --- |
+| `SOFT_DECLINE` | These payments can be retried under certain conditions |
+| `HARD_DECLINE` | These payments should never be retried |
+
+<Info>
+  You can face card scheme fines if you retry hard declines and over-retry soft declines, so it’s important to have a defined strategy here and ensure you aren’t breaching scheme rules.
+</Info>
+
+### Decline Reason
+
+This should only populated when decision type is `ISSUER_DECLINED`.
+
+Below are the decline reasons for **hard declines**:
+
+| Decline Reason | Description | Merchant Recommended Action |
+| --- | --- | --- |
+| `INVALID_CARD_NUMBER` | The issuer does not recognize the card number that it’s received. Perhaps, the account number was never issued or has been permanently blocked/closed | Evaluate for potential fraud and/or revalidate account number for accuracy |
+| `EXPIRED_CARD` | The card is expired or the expiration date is invalid | Validate the expiration date prior to reattempt and monitor reattempts for potential fraud |
+| `LOST_OR_STOLEN_CARD` | The cardholder has reported the card stolen or lost, and as a result, the account is either fraud-compromised or closed | Request alternate payment method from cardholder and/or advise the cardholder to contact their issuer |
+| `SUSPECTED_FRAUD` | The transaction does not pass risk monitoring detection systems or controls | Advise the cardholder to contact their issuer |
+| `ERROR` | Generic hard decline reason that groups a range of declines | Check the error message for more information |
+| `UNKNOWN` | The fallback decline reason if the decline code is not mapped. We conduct regular audits of this bucket of payments and update our mappings accordingly | Check the error message for more information |
+
+Below are the decline reasons for **soft declines**:
+
+| Decline Reason | Description | Merchant Recommended Action |
+| --- | --- | --- |
+| `REFER_TO_CARD_ISSUER` | The card issuer has indicated an issue with this card and requests contact from the customer | The shopper can try again after they resolved the issue with their bank/issuer |
+| `INSUFFICIENT_FUNDS` | Transaction amount exceeds the cardholder’s available balance | May reattempt for a lesser amount or at a later date to allow the customer to fund their debit account or pay down their credit account |
+| `WITHDRAWAL_LIMIT_EXCEEDED` | The amount and/or count activity limit for the account has been exceeded | Do not reattempt the transaction the same day to allow limits to reset |
+| `ISSUER_TEMPORARILY_UNAVAILABLE` | The issuer’s system is unable to perform the authorization due to system malfunction or critical message failure | Reattempts can occur within the same day |
+| `AUTHENTICATION_REQUIRED` | 3DS is required for this payment | Trigger 3DS flow for this payment |
+| `DO_NOT_HONOR` | This is a generic refusal that card issuers provide that has several possible causes | Check the error message for more information |
+| `DECLINED` | Generic soft decline reason that groups a range of declines | Check the error message for more information |
+
+### Error Message
+
+This is the error message provided by the processor so this does not have a predefined set of possible values. This can give extra information that’s useful when determining what’s the best action to pursue.
+
+
+
+Decline codes can be used in different ways to drive your payments strategy:
+
+* Create automated flows in Workflows to handle these scenarios, such as sending an automated email to the customer for every decline due to insufficient funds - [_learn more here_](/docs/automation/create-workflow)
+* View aggregated data insights on all your declines in Observability to help identify broader trends and areas of improvement/focus - [_learn more here_](/docs/observability)
+* Our Fallbacks feature is only triggered for certain decline scenarios - [_learn more here_](/docs/payments/fallbacks)
+* Our Adaptive 3DS feature is only triggered for certain decline scenarios - [_learn more here_](/docs/payments/3ds/overview#adaptive-3ds)
+* Create Monitors on Primer to track decline reasons, so you’re always alerted to changes in processor responses - [_learn more here_](/docs/observability/monitors)
+
+<Info>
+  [See here for Primer’s unified decline mapping standard and how we map from raw response codes.](/docs/payments/decline-codes/mapping-standard)
+
+</Info>

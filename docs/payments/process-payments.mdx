@@ -1,0 +1,182 @@
+---
+title: Process payments
+---
+
+<Info>
+This guide will take you through the steps needed to begin processing payments via Primer.
+
+Read about [Primer concepts](/docs/payments/primer-concepts) if you haven't already to understand how Primer rationalizes about payments.
+</Info>
+
+## Step 1. Connect your processors
+
+<Info>
+  You need at least one processor connected to begin processing payments through Primer.
+</Info>
+
+### What is a processor?
+
+A payment processor facilitates electronic payments between merchants and customers. Payment processors provide a variety of services, including the ability to accept and process credit and debit card payments as well as enabling other types of payment methods.
+
+Payment processors handle the technical aspects of processing payments, including communicating with the various financial networks and banks involved in the transaction.
+
+Primer has integrated with many processors, including Stripe, Braintree, and Adyen. Through Primer, you can simply connect to any processor and begin routing payments to them based on your needs and requirements.
+
+### Connect to a processor
+
+Primer enables you to connect to any processor of your choice without needing to write a single line of code.
+
+<Info>
+  Read the detailed guide on how to [connect a processor](/docs/payments/connect-a-processor) to learn more.
+</Info>
+
+## Step 2. Set up a workflow
+
+When a payment is created, you need to determine where to route the payment - this is where Workflows comes in.
+
+### What is Workflows?
+
+Workflows enable you to build end-to-end payment and commerce automation flows without writing any code. A workflow is necessary to dynamically process payments created via Primer.
+
+<Frame>
+  <img src="https://primer.io/docs/static/4b148e017af3bd0fd1ce584c7697f6ed/07a9c/workflow-preview.png"/>
+</Frame>
+
+Learn more about Workflows [here](/docs/automation/workflow-apps) to understand the key concepts.
+
+### Create and publish a payment workflow
+To process a payment, you will need at least one workflow that is made of the following blocks:
+
+<Steps>
+  <Step >
+    ["Payment created" Trigger](/docs/automation/payments-app/payment-created-trigger) \- Every workflow starts with a Trigger. When the payment is created, this Trigger will start a workflow run. You can add conditional logic for when to enable this Trigger so you can have different workflows that use this Trigger based on different business rules.
+  </Step>
+  <Step>
+    ["Authorize payment" Action](/docs/automation/payments-app/authorize-payment-action) \- Configure which processor you want to send the authorization request to, as well as enabling other services tied to the payment authorization.
+  </Step>
+  <Step>
+    ["Continue payment flow" Action](/docs/automation/payments-app/continue-payment-flow-action) \- This Action tells Universal Checkout that the payment is complete and to show either the success or failure screen. Without this, the customer will continue to see a pending payment on the checkout page. You can choose where in your payment flow this should take place.
+  </Step>
+</Steps>
+
+
+You can also set up other payment actions in the workflow, including ["Capture"](/docs/automation/payments-app/capture-payment-action), ["Refund"](/docs/automation/payments-app/refund-payment-action) and ["Cancel"](/docs/automation/payments-app/cancel-payment-action). See the [Payments App](/docs/automation/payments-app/payment-created-trigger) section to learn more.
+
+## Step 3. Set up Universal Checkout
+
+Now you have a processor connected and a workflow to route your payment to your processor, you can start to create payments. To do this, you need to set up Universal Checkout.
+
+Universal Checkout unifies all payment methods and processors behind a single integration, across both web and mobile, and handles the creation of a payment in a PCI-compliant way.
+
+**There are two steps required to set up Universal Checkout:**
+
+<CardGroup>
+  <Card
+  title="Configure your checkout"
+    icon="square-one"
+    iconType="solid"
+  >
+
+Determine which payment methods and features should be displayed under which conditions - this is all done without any code via the [Checkout](https://dashboard.primer.io/checkout) section in the dashboard.
+
+[**Read more here**](/docs/payments/universal-checkout/configure-universal-checkout-without-code).
+  </Card>
+
+  <Card
+  title="Integrate Universal Checkout"
+    icon="square-one"
+    iconType="solid"
+  >
+Integrate Universal Checkout into your application using Primer's SDKs. There are different integration options so make sure to choose the best for your use case.
+
+[**Read more here**](/docs/payments/universal-checkout/overview)
+  </Card>
+</CardGroup>
+
+Once you have configured your checkout and your integration is complete, customers can pay with your checkout and a payment will be created with Primer. Using your workflow, Primer will route the payment to your connected processor to be authorized.
+
+It's also possible to create merchant-initiated payments using vaulted payment methods via the Payments API - [learn more here](/docs/payments/payments-api).
+
+## Step 4. Receive notifications about payment updates
+
+Payments have a lifecycle. Primer has simplified learning payments and standardized the payment lifecycle for all processors. This way, you only need to rationalize about payments once.
+
+You can learn more about Primer’s payment lifecycle [here](/docs/payments/primer-concepts#payment-lifecycle).
+
+<Frame>
+  <img src="https://primer.io/docs/static/32cc8604bd56406afca6cd5f27834df4/07a9c/payment_lifecycle.png"/>
+</Frame>
+
+As the payment is processed and goes through its lifecycle, you can get updates on the payment’s state in two ways:
+
+<CardGroup>
+  <Card
+  title="Universal Checkout events"
+    icon="shopping-cart"
+    iconType="solid"
+  >
+
+Update your frontend UI with callbacks via the Primer SDK.
+  </Card>
+
+  <Card
+  title="Payment webhooks"
+    icon="credit-card"
+    iconType="solid"
+  >
+Receive payment notification events directly to your server.
+  </Card>
+</CardGroup>
+
+### Universal Checkout events
+
+The Primer SDK has various event callbacks you can listen to. These callbacks include `onCheckoutComplete()` and `onPaymentMethodAction()`. These are useful for updating the UI of your application, for example, to show loading indicators, success screens or failure screens.
+
+However, as these are client-side, it’s not the best practice to rely on these callbacks as the single source of truth. For this, it’s recommended to rely on payment webhooks.
+
+### Payment webhooks
+
+Primer can also send webhook notification events to your server. These should be used to update the status of the payment on your server.
+
+<Info>
+  See more details about the expected webhook payloads in our [API reference](https://primer.io/docs/api/webhooks/payment-webhooks/payment-status-webhook-event). You can learn more about webhooks on Primer [here](/docs/payments/webhooks).
+</Info>
+
+## Step 5. Explore your payments
+
+There are two ways you can get visibility of your payments, regardless of which state they are in:
+
+<CardGroup>
+  <Card
+  title="Payment timeline in the Primer Dashboard"
+    icon="shopping-cart"
+    iconType="solid"
+  >
+
+Easy-to-use UI to browse and review the details of all your payments.
+  </Card>
+
+  <Card
+  title="Payments API"
+    icon="credit-card"
+    iconType="solid"
+  >
+Retrieve details of your payments programmatically via API.
+  </Card>
+</CardGroup>
+
+### Payment timeline
+
+Access all your Primer payments from the [Payment timeline](https://dashboard.primer.io/payments) in the Primer Dashboard, where you can navigate, search and fitler your payment with an easy-to-use interface.
+
+
+<Info>
+  Read more about the [Payment timeline here](/docs/payments/primer-concepts#payment-timeline).
+</Info>
+
+### Payments API
+
+To retrieve your payments programmatically, you can either:
+
+* retrieve a single payment using the Primer payment ID - see the [API reference](https://primer.io/docs/api/api-reference/payments-api/get-payment-by-id) for more.
+* search and retrieve a list of payments - see the [API reference](https://primer.io/docs/api/api-reference/payments-api/get-payment-by-id) and [specific guide](/docs/payments/search-payments) for more.

@@ -1,0 +1,304 @@
+---
+title: Retrieve a client session
+api: GET https://api.sandbox.primer.io/client-session
+contentType: multipart/form-data
+description: "GET https://api.sandbox.primer.io/client-session"
+---
+
+This API call retrieves all the details associated with the client session corresponding to the client token that is provided in the request. The fields with empty values are excluded from the response.
+
+## Query parameters
+
+<ParamField
+  query="clientToken"
+  type="string"
+>
+Client token corresponding to the client session to retrieve
+</ParamField>
+
+### Headers
+
+<ParamField header="X-API-KEY" type="string" required>
+  Your API key
+</ParamField>
+
+## Response
+This endpoint returns an object.
+
+<ResponseField name="customerId" type="string" optional> A unique identifier for your customer. </ResponseField> <ResponseField name="orderId" type="string" optional> Your reference for the payment. </ResponseField> <ResponseField name="currencyCode" type="enum" optional> The 3-letter currency code in [ISO 4217 format](https://en.wikipedia.org/wiki/ISO_4217#Active_codes). For example, use USD for US dollars. <Expandable title="Show 182 enum values"> AED, AFN, ALL, AMD, ANG, AOA, ARS, AUD, AWG, AZN, BAM, BBD, BDT, BGN, BHD, BIF, BMD, BND, BOB, BOV, BRL, BSD, BTN, BWP, BYR, BYN, BZD, CAD, CDF, CHE, CHF, CHW, CLF, CLP, CNY, COP, COU, CRC, CUC, CUP, CVE, CZK, DJF, DKK, DOP, DZD, EGP, ERN, ETB, EUR, FJD, FKP, GBP, GEL, GHS, GIP, GMD, GNF, GTQ, GYD, HKD, HNL, HRK, HTG, HUF, IDR, ILS, INR, IQD, IRR, ISK, JMD, JOD, JPY, KES, KGS, KHR, KMF, KPW, KRW, KWD, KYD, KZT, LAK, LBP, LKR, LRD, LSL, LTL, LVL, LYD, MAD, MDL, MGA, MKD, MMK, MNT, MOP, MRO, MUR, MVR, MWK, MXN, MXV, MYR, MZN, NAD, NGN, NIO, NOK, NPR, NZD, OMR, PAB, PEN, PGK, PHP, PKR, PLN, PYG, QAR, RON, RSD, RUB, RWF, SAR, SBD, SCR, SDG, SEK, SGD, SHP, SLL, SOS, SRD, SSP, STD, SVC, SYP, SZL, THB, TJS, TMT, TND, TOP, TRY, TTD, TWD, TZS, UAH, UGX, USD, USN, USS, UYI, UYU, UZS, VEF, VND, VUV, WST, XAF, XAG, XAU, XBA, XBB, XBC, XBD, XCD, XDR, XFU, XOF, XPD, XPF, XPT, XSU, XTS, XUA, YER, ZAR, ZMW, ZWL </Expandable> </ResponseField>
+
+<ResponseField name="amount" type="integer" optional> The amount to charge the customer, in minor units. This is calculated from the line items, shipping, and other amounts provided in the order. If a top-level amount is provided, it overrides any calculated amount. </ResponseField>
+
+<ResponseField name="metadata" type="object" optional> Additional data to be used throughout the payment lifecycle. This is a map of strings to any value. </ResponseField>
+
+<ResponseField name="customer" type="object" optional>
+    More information associated with the customer.
+
+    <Expandable title="Show 8 properties">
+
+        <ResponseField name="emailAddress" type="string" optional>
+            Customer email address. Recommended for 3DS checks.
+        </ResponseField>
+
+        <ResponseField name="mobileNumber" type="string" optional>
+            The customer's mobile number.
+        </ResponseField>
+
+        <ResponseField name="firstName" type="string" optional>
+            The customer's first name.
+        </ResponseField>
+
+        <ResponseField name="lastName" type="string" optional>
+            The customer's last name.
+        </ResponseField>
+
+        <ResponseField name="billingAddress" type="object" optional>
+            Customer billing address. Recommended for 3DS checks.
+
+            <Expandable title="Billing Address Properties">
+                <ResponseField name="firstName" type="string" optional>
+                    The customer's first name.
+                </ResponseField>
+
+                <ResponseField name="lastName" type="string" optional>
+                    The customer's last name.
+                </ResponseField>
+
+                <ResponseField name="addressLine1" type="string" optional>
+                    Street name, Company name or PO Box.
+                </ResponseField>
+
+                <ResponseField name="addressLine2" type="string" optional>
+                    Apartment, Unit or Building number.
+                </ResponseField>
+
+                <ResponseField name="city" type="string" optional>
+                    Name of the city, district, town or village.
+                </ResponseField>
+
+                <ResponseField name="state" type="string" optional>
+                    State, County or Province.
+                </ResponseField>
+
+                <ResponseField name="countryCode" type="enum" optional>
+                    Two letter ISO country code.
+
+                    <Expandable title="Available country codes">
+                        AW, AF, AO, AI, AX, AL, AD, AE, AR, AM, AS, AQ, TF, AG, AU, AT, AZ, BI, BE, BJ, BQ, BF, BD, BG, BH, BS, BA, BL, BY, BZ, BM, BO, BR, BB, BN, BT, BV, BW, CF, CA, CC, CH, CL, CN, CI, CM, CD, CG, CK, CO, KM, CV, CR, CU, CW, CX, KY, CY, CZ, DE, DJ, DM, DK, DO, DZ, EC, EG, ER, EH, ES, EE, ET, FI, FJ, FK, FR, FO, FM, GA, GB, GE, GG, GH, GI, GN, GP, GM, GW, GQ, GR, GD, GL, GT, GF, GU, GY, HK, HM, HN, HR, HT, HU, ID, IM, IN, IO, IE, IR, IQ, IS, IL, IT, JM, JE, JO, JP, KZ, KE, KG, KH, KI, KN, KR, KW, LA, LB, LR, LY, LC, LI, LK, LS, LT, LU, LV, MO, MF, MA, MC, MD, MG, MV, MX, MH, MK, ML, MT, MM, ME, MN, MP, MZ, MR, MS, MQ, MU, MW, MY, YT, NA, NC, NE, NF, NG, NI, NU, NL, NO, NP, NR, NZ, OM, PK, PA, PN, PE, PH, PW, PG, PL, PR, KP, PT, PY, PS, PF, QA, RE, RO, RU, RW, SA, SD, SN, SG, GS, SH, SJ, SB, SL, SV, SM, SO, PM, RS, SS, ST, SR, SK, SI, SE, SZ, SX, SC, SY, TC, TD, TG, TH, TJ, TK, TM, TL, TO, TT, TN, TR, TV, TW, TZ, UG, UA, UM, UY, US, UZ, VA, VC, VE, VG, VI, VN, VU, WF, WS, YE, ZA, ZM, ZW
+                    </Expandable>
+                </ResponseField>
+
+                <ResponseField name="postalCode" type="string" optional>
+                    Postal or ZIP code.
+                </ResponseField>
+            </Expandable>
+        </ResponseField>
+
+        <ResponseField name="shippingAddress" type="object" optional>
+            Customer shipping address.
+
+            <Expandable title="Shipping Address Properties">
+                <ResponseField name="firstName" type="string" optional>
+                    The customer's first name.
+                </ResponseField>
+
+                <ResponseField name="lastName" type="string" optional>
+                    The customer's last name.
+                </ResponseField>
+
+                <ResponseField name="addressLine1" type="string" optional>
+                    Street name, Company name or PO Box.
+                </ResponseField>
+
+                <ResponseField name="addressLine2" type="string" optional>
+                    Apartment, Unit or Building number.
+                </ResponseField>
+
+                <ResponseField name="city" type="string" optional>
+                    Name of the city, district, town or village.
+                </ResponseField>
+
+                <ResponseField name="state" type="string" optional>
+                    State, County or Province.
+                </ResponseField>
+
+                <ResponseField name="countryCode" type="enum" optional>
+                    Two letter ISO country code.
+
+                    <Expandable title="Available country codes">
+                        AW, AF, AO, AI, AX, AL, AD, AE, AR, AM, AS, AQ, TF, AG, AU, AT, AZ, BI, BE, BJ, BQ, BF, BD, BG, BH, BS, BA, BL, BY, BZ, BM, BO, BR, BB, BN, BT, BV, BW, CF, CA, CC, CH, CL, CN, CI, CM, CD, CG, CK, CO, KM, CV, CR, CU, CW, CX, KY, CY, CZ, DE, DJ, DM, DK, DO, DZ, EC, EG, ER, EH, ES, EE, ET, FI, FJ, FK, FR, FO, FM, GA, GB, GE, GG, GH, GI, GN, GP, GM, GW, GQ, GR, GD, GL, GT, GF, GU, GY, HK, HM, HN, HR, HT, HU, ID, IM, IN, IO, IE, IR, IQ, IS, IL, IT, JM, JE, JO, JP, KZ, KE, KG, KH, KI, KN, KR, KW, LA, LB, LR, LY, LC, LI, LK, LS, LT, LU, LV, MO, MF, MA, MC, MD, MG, MV, MX, MH, MK, ML, MT, MM, ME, MN, MP, MZ, MR, MS, MQ, MU, MW, MY, YT, NA, NC, NE, NF, NG, NI, NU, NL, NO, NP, NR, NZ, OM, PK, PA, PN, PE, PH, PW, PG, PL, PR, KP, PT, PY, PS, PF, QA, RE, RO, RU, RW, SA, SD, SN, SG, GS, SH, SJ, SB, SL, SV, SM, SO, PM, RS, SS, ST, SR, SK, SI, SE, SZ, SX, SC, SY, TC, TD, TG, TH, TJ, TK, TM, TL, TO, TT, TN, TR, TV, TW, TZ, UG, UA, UM, UY, US, UZ, VA, VC, VE, VG
+                    </Expandable>
+                </ResponseField>
+
+                <ResponseField name="taxId" type="string" optional>
+                    The customer's tax id number for tax exemptions.
+                </ResponseField>
+
+                <ResponseField name="nationalDocumentId" type="string" optional>
+                    The customer's national identification number.
+                </ResponseField>
+            </Expandable>
+        </ResponseField>
+    </Expandable>
+</ResponseField>
+
+<ResponseField name="order" type="object" optional>
+
+ More information associated with the order.
+  <Expandable title="Order Properties">
+   <ResponseField name="paymentMethod" type="object" optional>
+    Enable certain options associated with the payment methods.
+   </ResponseField>
+  </Expandable>
+</ResponseField>
+<ResponseField name="paymentMethod" type="object" optional> Enable certain options associated with the payment methods. <Expandable title="Payment Method Properties"> <ResponseField name="vaultOnSuccess" type="boolean" optional> Whether the payment method should be vaulted on a successful payment or not. </ResponseField> <ResponseField name="vaultOn3DS" type="boolean" optional> Whether the payment method should be vaulted after a successful 3DS authentication or not. </ResponseField> <ResponseField name="descriptor" type="string" optional> A description of the payment, as it would typically appear on a bank statement. </ResponseField> <ResponseField name="paymentType" type="enum" optional> Payment types, primarily used for recurring payments. Possible values: FIRST_PAYMENT, ECOMMERCE, SUBSCRIPTION, UNSCHEDULED. </ResponseField> <ResponseField name="orderedAllowedCardNetworks" type="array" optional> List of allowed card networks in order of preference. If not provided, all supported networks are allowed. </ResponseField> <ResponseField name="options" type="object" optional> Additional options for specific payment methods. </ResponseField> <ResponseField name="authorizationType" type="enum" optional> Allows adjusting the authorized amount after authorization, if supported. Values: ESTIMATED, FINAL. </ResponseField> </Expandable> </ResponseField>
+## Errors
+<ResponseField
+  name="400"
+  type="Bad Request"
+>
+<Expandable title="property">
+  This error returns an object with the following properties:
+
+<ResponseField name="error" type="object"> An object containing information about the error that occurred. <Expandable title="Error Properties"> <ResponseField name="errorId" type="string"> An error ID </ResponseField> <ResponseField name="description" type="string"> A human readable description of the error </ResponseField> <ResponseField name="diagnosticsId" type="string" optional> An ID that you can quote when contacting the Primer support team via our JIRA Service Desk. </ResponseField> <ResponseField name="validationErrors" type="array" optional> Returned in case of a badly formed request. Contains a list of maps from strings to any value. </ResponseField> </Expandable> </ResponseField>
+
+</Expandable>
+</ResponseField>
+
+<ResponseField name="422" type="Unprocessable Entity">
+This error returns an object with the following properties:
+<Expandable title="property">
+
+
+<ResponseField name="error" type="object"> An object containing information about the error that occurred. <Expandable title="Error Properties"> <ResponseField name="errorId" type="string"> An error ID </ResponseField> <ResponseField name="description" type="string"> A human readable description of the error </ResponseField> <ResponseField name="diagnosticsId" type="string" optional> An ID that you can quote when contacting the Primer support team via their JIRA Service Desk. </ResponseField> <ResponseField name="validationErrors" type="array" optional> Returned in case of a badly formed request. Contains a list of maps from strings to any value. </ResponseField> </Expandable> </ResponseField>
+</Expandable>
+</ResponseField>
+
+<ResponseExample>
+  ```json 200 Retrieved
+  {
+  "currencyCode": "AED",
+  "customer": {
+    "billingAddress": {
+      "countryCode": "AW"
+    },
+    "shippingAddress": {
+      "countryCode": "AW"
+    }
+  },
+  "order": {
+    "lineItems": [
+      {
+        "amount": 1,
+        "productType": "PHYSICAL",
+        "productData": {}
+      }
+    ],
+    "countryCode": "AW",
+    "retailerCountryCode": "AW",
+    "fees": [
+      {
+        "amount": 1
+      }
+    ],
+    "shipping": {}
+  },
+  "paymentMethod": {
+    "paymentType": "FIRST_PAYMENT",
+    "orderedAllowedCardNetworks": [
+      "AMEX"
+    ],
+    "options": {
+      "<PAYMENT_METHOD_TYPE>": {
+        "surcharge": {}
+      },
+      "PAYMENT_CARD": {
+        "networks": {
+          "AMEX": {
+            "surcharge": {}
+          },
+          "CARTES_BANCAIRES": {
+            "surcharge": {}
+          },
+          "DANKORT": {
+            "surcharge": {}
+          },
+          "DINERS_CLUB": {
+            "surcharge": {}
+          },
+          "DISCOVER": {
+            "surcharge": {}
+          },
+          "ENROUTE": {
+            "surcharge": {}
+          },
+          "ELO": {
+            "surcharge": {}
+          },
+          "HIPER": {
+            "surcharge": {}
+          },
+          "INTERAC": {
+            "surcharge": {}
+          },
+          "JCB": {
+            "surcharge": {}
+          },
+          "MAESTRO": {
+            "surcharge": {}
+          },
+          "MASTERCARD": {
+            "surcharge": {}
+          },
+          "MIR": {
+            "surcharge": {}
+          },
+          "PRIVATE_LABEL": {
+            "surcharge": {}
+          },
+          "UNIONPAY": {
+            "surcharge": {}
+          },
+          "VISA": {
+            "surcharge": {}
+          },
+          "OTHER": {
+            "surcharge": {}
+          }
+        }
+      }
+    },
+    "authorizationType": "ESTIMATED"
+  }
+}
+  ```
+  ```JSON 400 Bad request
+  {
+  "error": {
+    "errorId": "string",
+    "description": "string",
+    "diagnosticsId": "string",
+    "validationErrors": [
+      {
+        "string": {}
+      }
+    ]
+  }
+}
+```
+  ```json 402 Unprocessable Entity
+
+{
+  "error": {
+    "errorId": "string",
+    "description": "string",
+    "diagnosticsId": "string",
+    "validationErrors": [
+      {
+        "string": {}
+      }
+    ]
+  }
+}
+```
+</ResponseExample>
