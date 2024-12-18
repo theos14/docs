@@ -123,5 +123,6 @@
   "footerSocials": {
     "youtube": "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
     "linkedin": "https://www.linkedin.com/company/primerapi/"
-  }
+  },
+  "feedback.thumbsRating": true
 }
