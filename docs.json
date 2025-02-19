@@ -1,0 +1,179 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Primer",
+  "colors": {
+    "primary": "#ffa49b",
+    "light": "#ffa49b",
+    "dark": "#1b1a1a"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "versions": [
+      {
+        "version": "v2.3",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "",
+                "pages": [
+                  "docs/home"
+                ]
+              },
+              {
+                "group": "Payments",
+                "pages": [
+                  "docs/payments",
+                  "docs/payments/process-payments",
+                  "docs/payments/primer-concepts",
+                  "docs/payments/currencies",
+                  {
+                    "group": "Decline Codes",
+                    "pages": [
+                      "docs/payments/decline-codes/overview",
+                      "docs/payments/decline-codes/mapping-standard"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Introduction",
+                "pages": [
+                  "docs/api/v2.3/introduction/getting-started",
+                  "docs/api/v2.3/introduction/authentication",
+                  "docs/api/v2.3/introduction/api-responses"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  {
+                    "group": "Client Session API",
+                    "pages": [
+                      "docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"
+                    ]
+                  },
+                  {
+                    "group": "Loyalty API",
+                    "pages": [
+                      "docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "version": "v2.2",
+        "tabs": [
+          {
+            "tab": "Documentation",
+            "groups": [
+              {
+                "group": "",
+                "pages": [
+                  "docs/home"
+                ]
+              },
+              {
+                "group": "Payments",
+                "pages": [
+                  "docs/payments",
+                  "docs/payments/process-payments",
+                  "docs/payments/primer-concepts",
+                  "docs/payments/currencies",
+                  {
+                    "group": "Decline Codes",
+                    "pages": [
+                      "docs/payments/decline-codes/overview",
+                      "docs/payments/decline-codes/mapping-standard"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "API Reference",
+            "groups": [
+              {
+                "group": "Introduction",
+                "pages": [
+                  "docs/api/v2.2/introduction/getting-started"
+                ]
+              },
+              {
+                "group": "API Reference",
+                "pages": [
+                  {
+                    "group": "Loyalty API",
+                    "pages": [
+                      "docs/api/v2.2/loyalty-api/get-loyalty-customer"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Blog",
+          "href": "https://primer.io/blog",
+          "icon": "newspaper"
+        },
+        {
+          "anchor": "Case Studies",
+          "href": "https://primer.io/case-studies",
+          "icon": "books"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg",
+    "href": "https://primer.io/"
+  },
+  "appearance": {
+    "default": "light"
+  },
+  "background": {
+    "color": {
+      "light": "#f9f5ff"
+    }
+  },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "Contact sales",
+      "href": "https://primer.io/contact-us"
+    }
+  },
+  "footer": {
+    "socials": {
+      "youtube": "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
+      "linkedin": "https://www.linkedin.com/company/primerapi/"
+    }
+  },
+  "fonts": {
+    "heading": {
+      "family": "Interdisplay",
+      "weight": 500,
+      "format": "woff2",
+      "source": "https://cdn.prod.website-files.com/65bcc4714739c54deeb9bac7/675aeb4efaabe1ba38ca0132_InterDisplay-Medium.woff2"
+    }
+  }
+}
