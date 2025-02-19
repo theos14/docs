@@ -2,7 +2,7 @@
   "$schema": "https://mintlify.com/schema.json",
   "name": "Primer",
   "logo": {
-    "dark": "/logo/dark.svg",
+    "dark": "/logo/light.svg",
     "light": "/logo/light.svg",
     "href": "https://primer.io/"
   },
@@ -16,7 +16,7 @@
       "to": "#ffa49b"
     },
     "background": {
-      "light": "#ffffff"
+      "light": "#f9f5ff"
     }
   },
   "modeToggle": {
