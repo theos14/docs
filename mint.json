@@ -60,66 +60,28 @@
       "url": "https://primer.io/case-studies"
     }
   ],
-  "navigation": [
-    {
-      "group": "",
-      "pages": ["docs/home"]
-    },
-    {
-      "group": "Payments",
+  "navigation": {
+    "tabs": [
+      {
+      "tab": "Documentation",
       "pages": [
-        "docs/payments",
-        "docs/payments/process-payments",
-        "docs/payments/primer-concepts",
-        "docs/payments/currencies",
-        {
-          "group": "Decline Codes",
-          "pages": [
-            "docs/payments/decline-codes/overview",
-            "docs/payments/decline-codes/mapping-standard"
-          ]
-        }
+        "docs/home"
       ]
-    },
-    {
-      "group": "Introduction",
-      "version": "v2.3",
+      },
+      {
+      "tab": "API Reference",
       "pages": [
         "docs/api/v2.3/introduction/getting-started",
         "docs/api/v2.3/introduction/authentication",
         "docs/api/v2.3/introduction/api-responses"
       ]
-    },
-    {
-      "group": "API Reference",
-      "version": "v2.3",
-      "pages": [
-        {
-          "group": "Client Session API",
-          "pages": ["docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"]
-        },
-        {
-          "group": "Loyalty API",
-          "pages": ["docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"]
-        }
-      ]
-    },
-    {
-      "group": "Introduction",
-      "version": "v2.2",
-      "pages": ["docs/api/v2.2/introduction/getting-started"]
-    },
-    {
-      "group": "API Reference",
-      "version": "v2.2",
-      "pages": [
-        {
-          "group": "Loyalty API",
-          "pages": ["docs/api/v2.2/loyalty-api/get-loyalty-customer"]
-        }
-      ]
-    }
-  ],
+      },
+      {
+      "tab": "Blog",
+      "href": "https://external-link.com/blog"
+      }
+    ]
+  },
   "footerSocials": {
     "youtube": "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
     "linkedin": "https://www.linkedin.com/company/primerapi/"
