@@ -1,0 +1,9 @@
+export const ImageTextComponent = ({ imageSrc, title, subheading }) => (
+  <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+    <img src={imageSrc} alt={title} style={{ width: '200px', height: 'auto' }} />
+    <div>
+      <h2>{title}</h2>
+      <p>{subheading}</p>
+    </div>
+  </div>
+);

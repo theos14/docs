@@ -9,63 +9,184 @@
   },
   "favicon": "/favicon.png",
   "navigation": {
-    "versions": [
+    "tabs": [
       {
-        "version": "v2.3",
-        "tabs": [
+        "tab": "Home",
+        "hidden": true,
+        "pages": ["home"]
+      },
+      {
+        "tab": "Documentation",
+        "groups": [
           {
-            "tab": "Documentation",
-            "groups": [
+            "group": "Home Page",
+            "pages": ["docs/home"]
+          },
+          {
+            "group": "Get Started",
+            "pages": [
+              "docs/get-started/overview",
+              "docs/get-started/set-up-a-workflow",
+              "docs/get-started/connect-a-processor",
+              "docs/get-started/use-cases",
+              "docs/get-started/best-practices"
+            ]
+          },
+          {
+            "group": "Concepts",
+            "pages": [
+              "docs/concepts/overview",
+              "docs/concepts/primer-payment",
+              "docs/concepts/payment-lifecycle",
+              "docs/concepts/metrics",
               {
-                "group": "",
+                "group": "Decline Codes",
                 "pages": [
-                  "docs/home"
+                  "docs/concepts/decline-codes/overview",
+                  "docs/concepts/decline-codes/mapping-standard"
                 ]
               },
+              "docs/concepts/currencies",
+              "docs/concepts/filters"
+            ]
+          },
+          {
+            "group": "Payment Operations",
+            "pages": [
+              "docs/payment-operations/overview",
+              "docs/payment-operations/capture",
+              "docs/payment-operations/cancel",
+              "docs/payment-operations/refund",
+              "docs/payment-operations/adjust-authorization",
+              "docs/payment-operations/search"
+            ]
+          },
+          {
+            "group": "Checkout",
+            "pages": [
+              "docs/checkout/overview",
+              "docs/checkout/universal-checkout",
+              "docs/checkout/client-session",
               {
-                "group": "Payments",
+                "group": "Drop-In Checkout",
                 "pages": [
-                  "docs/payments",
-                  "docs/payments/process-payments",
-                  "docs/payments/primer-concepts",
-                  "docs/payments/currencies",
-                  {
-                    "group": "Decline Codes",
-                    "pages": [
-                      "docs/payments/decline-codes/overview",
-                      "docs/payments/decline-codes/mapping-standard"
-                    ]
-                  }
+                  "docs/checkout/drop-in/overview",
+                  "docs/checkout/drop-in/customization"
+                ]
+              },
+              "docs/checkout/headless",
+              {
+                "group": "Advanced",
+                "pages": [
+                  "docs/checkout/advanced/content-security-policy"
                 ]
               }
             ]
           },
           {
-            "tab": "API Reference",
-            "groups": [
+            "group": "Features",
+            "pages": [
+              "docs/features/overview",
+              "docs/features/save-payment-methods",
+              "docs/features/fingerprinting",
+              "docs/features/surcharge",
+              "docs/features/fallbacks",
+              "docs/features/fraud-checks",
+              "docs/features/cobadged-cards",
+              "docs/features/advanced-metadata-mapper",
+              "docs/features/three-d-secure",
+              "docs/features/network-tokenization"
+            ]
+          },
+          {
+            "group": "Disputes",
+            "pages": [
+              "docs/disputes/overview",
+              "docs/disputes/dispute-lifecycle",
+              "docs/disputes/manage-disputes"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "docs/workflows/overview",
+              "docs/workflows/create-a-workflow",
               {
-                "group": "Introduction",
+                "group": "Utilities",
                 "pages": [
-                  "docs/api/v2.3/introduction/getting-started",
-                  "docs/api/v2.3/introduction/authentication",
-                  "docs/api/v2.3/introduction/api-responses"
+                  "docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"
+
                 ]
               },
+              "docs/workflows/workflow-validation",
+              "docs/workflows/workflow-run-failed-webhook",
+              "docs/workflows/export-import",
+              "docs/workflows/templates",
+              "docs/workflows/monitoring-workflows",
               {
-                "group": "API Reference",
+                "group": "Apps",
                 "pages": [
                   {
-                    "group": "Client Session API",
+                    "group": "Native Apps",
                     "pages": [
-                      "docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"
+                      "docs/workflows/apps/native-apps/payments-app",
+                      "docs/workflows/apps/native-apps/vault-app",
+                      "docs/workflows/apps/native-apps/monitors-app",
+                      "docs/workflows/apps/native-apps/disputes-app",
+                      "docs/workflows/apps/native-apps/emails-app",
+                      "docs/workflows/apps/native-apps/web-requests-app"
                     ]
                   },
                   {
-                    "group": "Loyalty API",
+                    "group": "3rd Party Apps",
                     "pages": [
-                      "docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"
+                      "docs/workflows/apps/third-party-apps/overview"
                     ]
                   }
+                ]
+              },
+              "docs/workflows/use-cases"
+            ]
+          },
+          {
+            "group": "Observability",
+            "pages": []
+          },
+          {
+            "group": "Monitors",
+            "pages": []
+          },
+          {
+            "group": "Reconciliation",
+            "pages": []
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "docs/api/v2.3/introduction/getting-started",
+              "docs/api/v2.3/introduction/authentication",
+              "docs/api/v2.3/introduction/api-responses"
+            ]
+          },
+          {
+            "group": "API Reference",
+            "pages": [
+              {
+                "group": "Client Session API",
+                "pages": [
+                  "docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"
+                ]
+              },
+              {
+                "group": "Loyalty API",
+                "pages": [
+                  "docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"
                 ]
               }
             ]
@@ -73,74 +194,30 @@
         ]
       },
       {
-        "version": "v2.2",
-        "tabs": [
-          {
-            "tab": "Documentation",
-            "groups": [
-              {
-                "group": "",
-                "pages": [
-                  "docs/home"
-                ]
-              },
-              {
-                "group": "Payments",
-                "pages": [
-                  "docs/payments",
-                  "docs/payments/process-payments",
-                  "docs/payments/primer-concepts",
-                  "docs/payments/currencies",
-                  {
-                    "group": "Decline Codes",
-                    "pages": [
-                      "docs/payments/decline-codes/overview",
-                      "docs/payments/decline-codes/mapping-standard"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "groups": [
-              {
-                "group": "Introduction",
-                "pages": [
-                  "docs/api/v2.2/introduction/getting-started"
-                ]
-              },
-              {
-                "group": "API Reference",
-                "pages": [
-                  {
-                    "group": "Loyalty API",
-                    "pages": [
-                      "docs/api/v2.2/loyalty-api/get-loyalty-customer"
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Blog",
-          "href": "https://primer.io/blog",
-          "icon": "newspaper"
-        },
-        {
-          "anchor": "Case Studies",
-          "href": "https://primer.io/case-studies",
-          "icon": "books"
+          "tab": "SDKs",
+          "versions": [
+            {
+              "version": "latest",
+              "anchors": [
+                {
+                  "anchor": "Javascript",
+                  "pages": [
+                    "test/js/create",
+                    "test/js/edit"
+                  ]
+                },
+                {
+                  "anchor": "Python",
+                  "pages": [
+                    "test/python/create",
+                    "test/python/edit"
+                  ]
+                }
+              ]
+            }
+          ]
         }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/light.svg",
