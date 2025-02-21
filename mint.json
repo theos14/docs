@@ -16,7 +16,8 @@
       "to": "#ffa49b"
     },
     "background": {
-      "light": "#f9f5ff"
+      "light": "#f9f5ff",
+      "image": "/logo/light.svg"
     }
   },
   "modeToggle": {
@@ -52,6 +53,11 @@
     {
       "name": "Blog",
       "icon": "newspaper",
+      "url": "https://primer.io/blog"
+    },
+     {
+      "name": "Test",
+      "icon": "smile",
       "url": "https://primer.io/blog"
     },
     {
