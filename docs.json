@@ -256,16 +256,18 @@
         },
       {
         "tab": "Connections",
-        "groups": [
-          {
-            "group": "Introduction",
-            "pages": [
-              "docs/api/v2.3/introduction/getting-started",
-              "docs/api/v2.3/introduction/authentication",
-              "docs/api/v2.3/introduction/api-responses"
+        {
+           "anchor": "Payment Methods",
+            "icon": "triangle-exclamation",
+            "groups": [{
+              "group": "Payment Methods",
+              "pages": [
+                "docs/connections/payment-methods/overview",
+                "docs/connections/payment-methods/available-payment-methods",
+                "docs/connections/payment-methods/guides/overview"
             ]
+            }]
           }
-        ]
       },
       {
         "tab": "Knowledge Base",
