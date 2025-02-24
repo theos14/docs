@@ -18,7 +18,7 @@
         "tab": "Documentation",
         "anchors": [
           {
-            "anchor": "Get started",
+            "anchor": "Getting started",
             "icon": "book-open",
             "groups": [{
                 "group": "Getting Started",
@@ -256,18 +256,42 @@
         },
       {
         "tab": "Connections",
-        "anchors": [{
-         "anchor": "Payment Methods",
-          "icon": "triangle-exclamation",
-          "groups": [{
-            "group": "Payment Methods",
-            "pages": [
-              "docs/connections/payment-methods/overview",
-              "docs/connections/payment-methods/available-payment-methods",
-              "docs/connections/payment-methods/guides/overview"
-          ]
-          }]
-        }]
+        "anchors": [
+            {
+             "anchor": "Payment Methods",
+              "icon": "plug",
+              "groups": [
+                {
+                    "group": "Payment Methods",
+                    "pages": [
+                      "docs/connections/payment-methods/overview",
+                      "docs/connections/payment-methods/available-payment-methods"
+                  ]
+                },
+                {
+                  "group": "Guides",
+                  "pages": ["docs/connections/payment-methods/guides/overview"]
+                }
+             ]
+            },
+            {
+              "anchor": "Fraud Providers",
+              "icon": "shield",
+              "groups": [
+                {
+                  "group": "Fraud Providers",
+                  "pages": ["docs/connections/fraud-providers/overview"]
+                },
+                {
+                  "group": "Guides",
+                  "pages": [
+                    "docs/connections/fraud-providers/guides/forter",
+                    "docs/connections/fraud-providers/guides/riskified"
+                  ]
+                }
+              ]
+            }
+        ]
       },
       {
         "tab": "Knowledge Base",
