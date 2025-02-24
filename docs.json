@@ -23,7 +23,7 @@
             "groups": [{
                 "group": "Getting Started",
                 "pages": [
-                "docs/get-started/overview",
+                "docs/get-started/welcome-to-primer",
                 "docs/get-started/set-up-a-workflow",
                 "docs/get-started/connect-a-processor",
                 "docs/get-started/use-cases",
@@ -119,21 +119,9 @@
             "groups": [{
               "group": "Disputes",
               "pages": [
-                {
-                  "group": "Overview",
-                  "icon": "book-open",
-                  "pages": ["docs/disputes/overview"]
-                },
-                {
-                  "group": "Dispute Lifecycle",
-                  "icon": "book-open",
-                  "pages": ["docs/disputes/dispute-lifecycle"]
-                },
-                {
-                  "group": "Manage Disputes",
-                  "icon": "book-open",
-                  "pages": ["docs/disputes/manage-disputes"]
-                }
+                "docs/disputes/overview",
+                "docs/disputes/dispute-lifecycle",
+                "docs/disputes/manage-disputes"
             ]
             }]
           },
