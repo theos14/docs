@@ -19,7 +19,7 @@
         "anchors": [
           {
             "anchor": "Get started",
-            "icon": "open-book",
+            "icon": "book-open",
             "groups": [{
                 "group": "Getting Started",
                 "pages": [
@@ -174,10 +174,11 @@
           },
           {
            "anchor": "Observability",
-            "icon": "chart-line",
+            "icon": "chart-simple",
             "groups": [{
               "group": "Observability",
-              "pages": []
+              "pages": ["docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"]
             }]
           },
           {
@@ -185,7 +186,8 @@
             "icon": "file-lines",
             "groups": [{
               "group": "Reconciliation",
-              "pages": []
+              "pages": ["docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"]
             }]
           },
           {
@@ -193,7 +195,8 @@
             "icon": "wave-pulse",
             "groups": [{
               "group": "Monitors",
-              "pages": []
+              "pages": ["docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"]
             }]
           }
         ]
