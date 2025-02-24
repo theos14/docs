@@ -12,7 +12,6 @@
     "tabs": [
       {
         "tab": "Home",
-        "hidden": true,
         "pages": ["home"]
       },
       {
@@ -25,10 +24,6 @@
                 "group": "Getting Started",
                 "pages": [
                 "docs/get-started/overview",
-                 {
-                   "group": "Workflows",
-                   "pages":["docs/get-started/set-up-a-workflow","docs/get-started/connect-a-processor"]
-                 }, 
                 "docs/get-started/set-up-a-workflow",
                 "docs/get-started/connect-a-processor",
                 "docs/get-started/use-cases",
@@ -39,7 +34,9 @@
           {
             "anchor": "Concepts",
             "icon": "",
-            "pages": [
+            "groups": [{
+              "group": "Concepts",
+              "pages": [
               "docs/concepts/overview",
               "docs/concepts/primer-payment",
               "docs/concepts/payment-lifecycle",
@@ -54,11 +51,14 @@
               "docs/concepts/currencies",
               "docs/concepts/filters"
             ]
+            }],
           },
           {
             "anchor": "Payment Operations",
-            "icon": "",
-            "pages": [
+            "icon": "money-bill",
+            "groups": [{
+              "group": "Payment Operations",
+              "pages": [
               "docs/payment-operations/overview",
               "docs/payment-operations/capture",
               "docs/payment-operations/cancel",
@@ -66,11 +66,14 @@
               "docs/payment-operations/adjust-authorization",
               "docs/payment-operations/search"
             ]
+            }],
           },
           {
            "anchor": "Checkout",
             "icon": "",
-            "pages": [
+            "groups": [{
+              "group": "Checkout",
+                "pages": [
               "docs/checkout/overview",
               "docs/checkout/universal-checkout",
               "docs/checkout/client-session",
@@ -89,11 +92,14 @@
                 ]
               }
             ]
+            }],         
           },
           {
            "anchor": "Features",
             "icon": "",
-            "pages": [
+            "groups": [{
+              "group": "Features",
+              "pages": [
               "docs/features/overview",
               "docs/features/save-payment-methods",
               "docs/features/fingerprinting",
@@ -105,20 +111,26 @@
               "docs/features/three-d-secure",
               "docs/features/network-tokenization"
             ]
+            }],
           },
           {
            "anchor": "Disputes",
             "icon": "",
-            "pages": [
+            "groups": [{
+              "group": "Disputes",
+              "pages": [
               "docs/disputes/overview",
               "docs/disputes/dispute-lifecycle",
               "docs/disputes/manage-disputes"
             ]
+            }],
           },
           {
            "anchor": "Workflows",
             "icon": "",
-            "pages": [
+            "groups": [{
+              "group": "Workflows",
+              "pages": [
               "docs/workflows/overview",
               "docs/workflows/create-a-workflow",
               {
@@ -158,21 +170,31 @@
               },
               "docs/workflows/use-cases"
             ]
+            }],
           },
           {
            "anchor": "Observability",
             "icon": "",
-            "pages": []
+            "groups": [{
+              "group": "Observability",
+              "pages": []
+            }],
           },
           {
            "anchor": "Reconciliation",
             "icon": "",
-            "pages": []
+            "groups": [{
+              "group": "Reconciliation",
+              "pages": []
+            }]
           },
           {
            "anchor": "Monitors",
             "icon": "",
-            "pages": []
+            "groups": [{
+              "group": "Monitors".
+              "pages": []
+            }]
           }
         ]
       },
