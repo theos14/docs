@@ -3,8 +3,8 @@
   "theme": "mint",
   "name": "Primer",
   "colors": {
-    "primary": "#ffa49b",
-    "light": "#000000",
+    "primary": "#000000",
+    "light": "#ffa49b",
     "dark": "#1b1a1a"
   },
   "favicon": "/favicon.png",
