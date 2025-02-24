@@ -19,7 +19,7 @@
         "anchors": [
           {
             "anchor": "Get started",
-            "icon": "",
+            "icon": "open-book",
             "groups": [{
                 "group": "Getting Started",
                 "pages": [
@@ -33,7 +33,7 @@
           },
           {
             "anchor": "Concepts",
-            "icon": "",
+            "icon": "brain",
             "groups": [{
               "group": "Concepts",
               "pages": [
@@ -55,7 +55,7 @@
           },
           {
             "anchor": "Payment Operations",
-            "icon": "",
+            "icon": "money-bills",
             "groups": [{
               "group": "Payment Operations",
               "pages": [
@@ -70,7 +70,7 @@
           },
           {
            "anchor": "Checkout",
-            "icon": "",
+            "icon": "cart-shopping",
             "groups": [{
               "group": "Checkout",
               "pages": [
@@ -96,7 +96,7 @@
           },
           {
            "anchor": "Features",
-            "icon": "",
+            "icon": "layer-group",
             "groups": [{
               "group": "Features",
               "pages": [
@@ -115,7 +115,7 @@
           },
           {
            "anchor": "Disputes",
-            "icon": "",
+            "icon": "triangle-exclamation",
             "groups": [{
               "group": "Disputes",
               "pages": [
@@ -127,7 +127,7 @@
           },
           {
            "anchor": "Workflows",
-            "icon": "",
+            "icon": "chart-diagram",
             "groups": [{
               "group": "Workflows",
               "pages": [
@@ -174,7 +174,7 @@
           },
           {
            "anchor": "Observability",
-            "icon": "",
+            "icon": "chart-line",
             "groups": [{
               "group": "Observability",
               "pages": []
@@ -182,7 +182,7 @@
           },
           {
            "anchor": "Reconciliation",
-            "icon": "",
+            "icon": "file-lines",
             "groups": [{
               "group": "Reconciliation",
               "pages": []
@@ -190,7 +190,7 @@
           },
           {
            "anchor": "Monitors",
-            "icon": "",
+            "icon": "wave-pulse",
             "groups": [{
               "group": "Monitors",
               "pages": []
@@ -254,11 +254,29 @@
         },
       {
         "tab": "Connections",
-        "pages": []
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "docs/api/v2.3/introduction/getting-started",
+              "docs/api/v2.3/introduction/authentication",
+              "docs/api/v2.3/introduction/api-responses"
+            ]
+          }
+        ]
       },
       {
         "tab": "Knowledge Base",
-        "pages": []
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "docs/api/v2.3/introduction/getting-started",
+              "docs/api/v2.3/introduction/authentication",
+              "docs/api/v2.3/introduction/api-responses"
+            ]
+          }
+        ]
       }
     ]
   },
