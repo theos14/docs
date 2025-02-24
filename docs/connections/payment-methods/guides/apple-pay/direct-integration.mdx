@@ -1,5 +1,72 @@
 ---
-title: 'Direct Integration'
-description: 'Description of your new file.'
+title: "Apple Pay - Direct Integration"
+description: "Description of your new file."
 ---
 
+
+Let customers securely make payments using Apple Pay on your website or mobile application.
+
+With Primer's proprietary Apple Pay integration, you can begin accepting payments across Web and iOS with any card processor in a few simple steps.
+
+This native integration enables you to process Apple Pay payments with any card processor.
+
+
+
+## Get started with Apple Pay
+
+### Before you begin
+
+If this is your first payment method, complete the [Process Payment guide](https://primer.io/docs/payments/process-payments) to begin processing payments with Primer.
+
+### Configure card
+
+<Steps>
+  <Step title="Add a card processor to your Dashboard">
+    Go to the Integrations section of the Dashboard and look for a card processor such as Stripe, Adyen, Braintree, and many others.
+    Follow the instructions to connect the processor account to your Primer Dashboard.
+  </Step>
+
+  <Step title="Add Apple Pay to your Dashboard">
+    Go to the Integrations section of the Dashboard and look for Apple Pay.
+    Follow the instructions to connect your Apple Pay processor account to your Primer Dashboard.
+  </Step>
+
+  <Step title="Activate Apple Pay on the Checkout">
+    Go to the Checkout section of the Dashboard and activate the Apple Pay payment method.
+
+
+  </Step>
+
+  <Step title="Configure a Workflow to process payments with Apple Pay">
+    Go to the Workflow section and make sure one of your card processors is used to process Apple Pay payments.
+  </Step>
+</Steps>
+
+### Prepare the client session
+
+Apple Pay leverages the following parameters to process a payment.
+
+Pass them when creating the client session.
+
+
+
+| Parameter Name | Required | Description                                                                                                                                                                                                                                                                                                                                               |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| currencyCode   | /image   | 3-letter currency code in [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format, e.g. `USD` for US dollars                                                                                                                                                                                                                               |
+| lineItems      |          | Details of the line items of the order                                                                                                                                                                                                                                                                                                                    |
+| countryCode    |          | The country in which the order is created                                                                                                                                                                                                                                                                                                                 |
+| merchantName   |          | For payments using the Apple Pay payment method, use this field to override the default merchant name for the Primer account from showing on the Apple Pay flow. For example, if your merchant name on your account is "Company X" but you want to display a specific store name on the Apple Pay flow, you can set the `merchantName` to "Store name A". |
+
+## Add Apple Pay into your website or mobile app
+
+<CardGroup cols="2">
+  <Card title="Drop-in UI" img="https://primer.io/docs/static/drop-in-0f97e49d66e9238ce8b6791c8a45ef94.png">
+    Use our customizable drop-in UI to quickly add payment methods to your checkout.
+  </Card>
+
+  <Card title="Headless Checkout" img="https://primer.io/docs/static/headless-checkout-37dafdb75e14315453f9b5891667745a.png">
+    Have the freedom to build your own UI using our headless checkout.
+  </Card>
+</CardGroup>
+
+##
