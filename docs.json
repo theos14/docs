@@ -259,20 +259,20 @@
         "anchors": [
             {
              "anchor": "Payment Methods",
-              "icon": "plug",
+              "icon": "money-check",
               "groups": [
                 {
                     "group": "Payment Methods",
                     "pages": [
                       "docs/connections/payment-methods/overview",
-                      "docs/connections/payment-methods/available-payment-methods"
-                  ]
-                },
-                {
-                  "group": "Guides",
-                  "pages": [
-                    "docs/connections/payment-methods/guides/overview",
-                    "docs/connections/payment-methods/guides/apple-pay/overview"
+                      "docs/connections/payment-methods/available-payment-methods",
+                      {
+                        "group": "Guides",
+                        "pages": [
+                          "docs/connections/payment-methods/guides/card/overview",
+                          "docs/connections/payment-methods/guides/apple-pay/overview"
+                        ]
+                      }
                   ]
                 }
              ]
@@ -283,13 +283,15 @@
               "groups": [
                 {
                   "group": "Fraud Providers",
-                  "pages": ["docs/connections/fraud-providers/overview"]
-                },
-                {
-                  "group": "Guides",
                   "pages": [
-                    "docs/connections/fraud-providers/guides/forter",
-                    "docs/connections/fraud-providers/guides/riskified"
+                    "docs/connections/fraud-providers/overview",
+                    {
+                      "group": "Guides",
+                      "pages": [
+                        "docs/connections/fraud-providers/guides/forter",
+                        "docs/connections/fraud-providers/guides/riskified"
+                      ]
+                    }
                   ]
                 }
               ]
