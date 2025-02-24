@@ -270,7 +270,10 @@
                 },
                 {
                   "group": "Guides",
-                  "pages": ["docs/connections/payment-methods/guides/overview"]
+                  "pages": [
+                    "docs/connections/payment-methods/guides/overview",
+                    "docs/connections/payment-methods/guides/apple-pay/overview"
+                  ]
                 }
              ]
             },
