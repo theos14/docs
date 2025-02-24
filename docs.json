@@ -227,7 +227,7 @@
                 "icon": "book-open",
                 "groups": [
                   {
-                    "group": "Getting Started",
+                    "group": "API Reference",
                     "pages": [
                       {
                         "group": "Client Session API",
@@ -267,17 +267,22 @@
                 "icon": "webhook",
                 "groups": [
                   {
-                    "group": "Payment Webhooks",
+                    "group": "Webhooks",
                     "pages": [
-                      "docs/api/v2.3/webhooks/payment-webhooks/payment-status",
-                      "docs/api/v2.3/webhooks/payment-webhooks/get-balance"
-                    ]
-                  },
-                  {
-                    "group": "Dispute Chargeback Webhooks",
-                    "pages": [
-                      "docs/api/v2.3/webhooks/dispute-webhooks/dispute-open"  ,
-                      "docs/api/v2.3/webhooks/dispute-webhooks/dispute-status"
+                      {
+                        "group": "Payment Webhooks",
+                        "pages": [
+                          "docs/api/v2.3/webhooks/payment-webhooks/payment-status",
+                          "docs/api/v2.3/webhooks/payment-webhooks/get-balance"
+                        ]
+                      },
+                      {
+                        "group": "Dispute Chargeback Webhooks",
+                        "pages": [
+                          "docs/api/v2.3/webhooks/dispute-webhooks/dispute-open"  ,
+                          "docs/api/v2.3/webhooks/dispute-webhooks/dispute-status"
+                        ]
+                      }
                     ]
                   }
                 ]
