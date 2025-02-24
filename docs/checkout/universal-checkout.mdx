@@ -1,7 +1,141 @@
 ---
-title: Universal Checkout
-description: Lore Ipsum
-sidebarTitle: Universal Checkout
+title: "Configure Universal Checkout without code"
+description: "Lore Ipsum"
+sidebarTitle: "Universal Checkout"
 ---
 
-This is a test
+#
+
+🎯
+
+This guide outlines how to configure Universal Checkout with all the payment methods and features you need.
+
+Make sure to follow these steps before integrating Universal Checkout into your website or mobile application.
+
+The Dashboard features a no-code interface enabling you to simply activate payment methods and checkout modules and create conditions that determine when and how they are displayed in Universal Checkout.
+
+## [Configure your checkout](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#configure-your-checkout)
+
+### [Step 1. Connect a payment method to Primer](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#step-1-connect-a-payment-method-to-primer)
+
+ℹ️
+
+Payment methods are at the core of Universal Checkout’s capabilities. They collect and pass information from the customer to the processor for the payment to be processed.
+
+Check our [Payment methods overview page](https://primer.io/docs/payment-methods) to learn more about payment methods and processors.
+
+The first step is to connect a payment method to your Primer account. This is done via the [Integrations section](https://sandbox-dashboard.primer.io/integrations) in the Dashboard - all without a single line of code.
+
+* **For card payments**
+
+
+
+
+  You are already all set 🚀
+
+* **For Apple Pay and Google Pay**
+
+
+
+
+  Click on "+ New Integration", search for Apple Pay or Google Pay, and follow the instructions.
+
+* **For payment methods that are also processors (e.g. PayPal, Klarna, ...)**
+
+
+
+
+  Click on "+ New Integration", search for the processor, and follow the instructions.
+
+* **For payment methods that come bundled with a processor**
+
+
+
+
+  Click on “+ New integration”, search for the processor - such as PayPal or Buckaroo - and follow the instructions. Then, select the payment methods you want to use via Primer.
+
+
+
+
+  ![Add payment methods to the dashboard](https://primer.io/docs/static/13d940c0ac9e78c71402e65e605fe51b/d9199/add_payment_methods.png "Add payment methods to the dashboard")
+
+### [Step 2. Configure your checkout](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#step-2-configure-your-checkout)
+
+Now that your payment methods are properly connected to Primer, head over to the [Checkout section](https://sandbox-dashboard.primer.io/checkout) of the Dashboard to configure Universal Checkout.
+
+This section enables you to:
+
+* Create conditions that determine which payment methods to display
+
+* Reorder the payment methods
+
+* Activate checkout modules such as capturing the billing address
+
+![Checkout section](https://primer.io/docs/static/085d531a8a28e54c67031a3bc334c64a/d9199/checkout_builder.png "Checkout section")
+
+#### [Create payment method conditions](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#create-payment-method-conditions)
+
+First, activate the payment method by toggling it on.
+
+![PayPal is toggled on](https://primer.io/docs/static/d1e844a3f00d36b115618cb86f3a7745/toggle-paypal.gif)
+
+Then click on the payment method to show the payment method settings in the right-hand panel. There, you can create conditions to decide when to display this payment method.
+
+Conditions can be based on the currency, amount, country, and metadata that are passed in the [client session](https://primer.io/docs/payments/universal-checkout/manage-client-sessions).
+
+![Condition builder](https://primer.io/docs/static/8091199e47eb92894ba89ba109803a4a/d9199/condition_builder.png "Condition builder")
+
+Some payment methods can be used with multiple processors, all of which appear in the side panel. For instance, PayPal can be used directly with the PayPal processor, with Pay., or with others.
+
+For such a payment method, only one processor can be used at a time. Create conditions for each processor you want to leverage in a checkout session.
+
+![Conditions](https://primer.io/docs/static/12d69702422277c106dc3aacbeee537f/d9199/conditions.png "Conditions")
+
+Universal Checkout selects the processor like so:
+
+* Universal Checkout evaluates these conditions in order from top to bottom and selects the first processor that matches the client session. Feel free to reorder the processors to better suit your use case.
+
+* If no processor has matched, the processor specified in the “All other conditions” section is used.
+
+* If no processor is specified in the “All other conditions” section, the payment method is not presented to the user. This enables you to show a given payment method with certain conditions.
+
+#### [Reorder payment methods](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#reorder-payment-methods)
+
+The Dashboard enables you to specify the order used to present the payment methods to your customer.
+
+* **With Drop-In checkout**
+
+
+
+
+  The payment methods are automatically displayed using the order specified on the left panel.
+
+* **With Headless checkout**
+
+
+
+
+  The SDK returns the list of payment methods using the “available payment methods load” event. This list follows the order specified on the left panel.
+
+
+
+
+  To build a more versatile checkout, we recommend that your developers follow the order of this event.
+
+Feel free to reorder the payment methods on the left panel to better suit your needs.
+
+### [Step 3. Activate checkout features](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#step-3-activate-checkout-features)
+
+Some payment methods such as Cards have additional features that you can activate without a line of code from within the settings tab in the right panel.
+
+![Settings](https://primer.io/docs/static/0878e86078e0b803163063ee0526f44c/d9199/settings.png "Settings")
+
+### [Step 4. Publish your checkout configuration](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#step-4-publish-your-checkout-configuration)
+
+Click on the “Publish” button to immediately make your checkout configuration available to all users.
+
+![Publish](https://primer.io/docs/static/3a8e2ff0338887edc7b0acc3c42e17f5/d9199/publish.png "Publish")
+
+## [To go further](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code#to-go-further)
+
+Now that your checkout is properly configured, take a look at our [Drop-In Checkout guide](https://primer.io/docs/payments/universal-checkout/drop-in/get-started/ios) or [Headless Checkout guide](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios) to avail it to your customers.

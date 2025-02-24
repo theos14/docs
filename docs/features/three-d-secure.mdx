@@ -1,7 +1,228 @@
 ---
-title: 3D Secure
-description: Lore Ipsum
-sidebarTitle: 3D Secure
+title: "3D Secure"
+sidebarTitle: "3D Secure"
 ---
 
-This is a test
+## [What is 3DS?](https://primer.io/docs/payments/3ds/overview#what-is-3ds)
+
+3D Secure (3DS) is an online protocol that aims to reduce fraud and increase security for online payments. 3DS requires customers to complete an additional verification step with the card issuer when paying.
+
+Each card network has its own branded name for 3DS, including Visa Secure, Mastercard Identity Check and American Express Safekey.
+
+3DS is mandatory for online card payments in the EU, meeting the Secure Customer Authentication (SCA) regulation as part of Revised Payment Services Directive (PSD2). It can be optionally used in other regions as an effective tool to reduce fraud.
+
+3D Secure 1 (3DS1) is the original version of 3DS, dating back to 2001. Although compliant as part of PSD2, it caused friction for customers, including a suboptimal mobile experience and not recognizing soft declines. A decision was made to decommission 3DS1 from October 2021 and it has now been sunset in favour of 3D Secure 2 (3DS2).
+
+An extension to 3DS1 was granted to a small number of Asian countries until October 2023 where it will be fully sunset and no longer in use.
+
+3DS2 (sometimes referred to as EMV® 3-D Secure) maintains the required SCA compliance but addresses the limtiations of 3DS1 which includes a much better customer experience.
+
+### [Frictionless authentication](https://primer.io/docs/payments/3ds/overview#frictionless-authentication)
+
+Unlike 3DS1, 3DS2 supports frictionless authentication, which leverages the additional customer information passed in the 3DS2 flow to determine scenarios where no additional customer input is required to authenticate the payment. In these instances, the payment is authenticated '*frictionlessly*', which leads to a much better customer experience.
+
+### [Challenge authentication](https://primer.io/docs/payments/3ds/overview#challenge-authentication)
+
+Issuers can determine that additional verification is required from the customer in order to authenticate a payment. As a result, a challenge is presented to the customer that outlines a two-factor authentication process the customer needs to undertake to verify themselves. The two-factor authentication process will vary across issuers.
+
+You can request that a challenge is mandated for the buyer from within the ["Perform 3DS" Action](https://primer.io/docs/automation/payments-app/perform-3ds-action#how-to-use-the-action). Note that while we cannot guarantee issuers will honour the request, it generally results in the buyer being presented a challenge, particularly in regulated regions.
+
+### [Liability shift](https://primer.io/docs/payments/3ds/overview#liability-shift)
+
+Generally, for payments that are successfully authenticated, liability for fraud-related chargebacks shifts from the merchant to the issuer.
+
+Note that there are some variances for when liability shift applies based on region and card network, which you should confirm with your processor/acquirer.
+
+### [ECI Values](https://primer.io/docs/payments/3ds/overview#eci-values)
+
+The Electronic Commerce Indicator (ECI) values are returned by the Directory Server (DS) and Access Control Server (ACS) as part of the 3DS flow. They indicate the outcome of the authentication request.
+
+Below is a table outlining the main ECI values:
+
+#### [Mastercard](https://primer.io/docs/payments/3ds/overview#mastercard)
+
+**ECI ValueDescriptionLiability Shift**
+
+00
+
+Authentication rejected or could not be attempted (EG information was incorrect, cardholder cancelled the authentication process, the ACS is not able to handle the request)
+
+No liability shift
+
+01
+
+Authentication attempted but was not available at the issuer. Instead, the DS stands in, which generates proof the merchant attempted authentication.
+
+Liability shift can sometimes apply
+
+02
+
+Authentication successful
+
+Liability shift applies
+
+#### [Visa, Amex and other card networks](https://primer.io/docs/payments/3ds/overview#visa-amex-and-other-card-networks)
+
+**ECI ValueDescriptionLiability Shift**
+
+05
+
+Authentication successful
+
+Liability shift applies
+
+06
+
+Authentication attempted but was not available at the issuer. Instead, the DS stands in, which generates proof the merchant attempted authentication.
+
+Liability shift can sometimes apply
+
+07
+
+Authentication rejected or could not be attempted (EG information was incorrect, cardholder cancelled the authentication process, the ACS is not able to handle the request)
+
+No liability shift
+
+If Primer receives the ECI during the 3DS flow, it is passed on to the processor during the authorization request. However, if the 3DS flow doesn't get to this stage, then there is no ECI value generated for that payment and no ECI is passed on to the processor.
+
+## [3DS via Primer](https://primer.io/docs/payments/3ds/overview#threeds-via-primer)
+
+Primer only supports 3D Secure 2 (3DS2) as [3DS1 is now sunset](https://primer.io/docs/payments/3ds/overview#what-is-3ds)
+
+Primer has decoupled 3D Secure from any underlying processor and simplified the implementation of 3DS across all your platforms.
+
+Configure 3D Secure in your workflow, and Universal Checkout will handle the rest, presenting a fully in-context and optimized 3D Secure flow to your customer on web and mobile. [See our guide on how to configure 3DS on Primer](https://primer.io/docs/payments/3ds/get-started/web).
+
+### [3DS statuses](https://primer.io/docs/payments/3ds/overview#threeds-statuses)
+
+Below are the possible 3DS statuses:
+
+**StatusDescription**
+
+`AUTH_SUCCESS`
+
+The payment is successfully authenticated.
+
+`AUTH_FAILED`
+
+The authentication was attempted but did not pass the required verification. This could be due to the cardholder failing to provide the correct authentication details or it could also be due to the assessment of the transaction's risk being deemed too high. The risk evaluation could be based on various factors such as unusual spending patterns, suspicious behaviour, or discrepancies in the provided information.
+
+`SKIPPED`
+
+Authentication was attempted but could not be completed due to an error. These errors include technical issues such as system failures and invalid responses from the ACS or DS.
+
+`NOT_PERFORMED`
+
+No 3DS authentication was attempted for this payment.
+
+`METHOD`
+
+Transitory status for Web only 3DS authentication flows, where the Web SDK retrieves the URL and handles the 3DS Method browser fingerprint.
+
+`CHALLENGE`
+
+Transitory status for authentications where a challenge is required and the 3DS challenge flow will be shown to the customer.
+
+### [Adaptive 3DS](https://primer.io/docs/payments/3ds/overview#adaptive-3ds)
+
+Adaptive 3DS is designed to improve conversion and abstract the complexity required to optimally configure when to show 3DS.
+
+When Adaptive 3DS is activated, payments are always processed without 3DS. If the processor declines the payment due to a lack of 3DS, Primer automatically runs 3DS and retries the payment immediately.
+
+⚠️
+
+Adaptive 3DS also skips 3DS in cases where 3DS is mandatory. As a result, Primer 3DS may lead to declined payments that are eventually authorized.
+
+Contact your processor/acquirer to make sure this strategy is allowed.
+
+#### [When is Adaptive 3DS triggered?](https://primer.io/docs/payments/3ds/overview#when-is-adaptive-3ds-triggered)
+
+Primer standardizes decline codes and reasons from processors so you only need to rationalize about payments once.
+
+Payments have the following fields which have been standardized across all processors:
+
+* `status`
+
+* `error decision type`
+
+* `error decline type`
+
+* `error decline reason`
+
+Adaptive 3DS will be triggered when the payment has one of the following sets of field values:
+
+**StatusError Decision TypeError Decline TypeError Decline Reason**
+
+Declined
+
+Gateway Rejected
+
+N/A
+
+N/A
+
+Declined
+
+Issuer Declined
+
+Soft Decline
+
+Authentication Required
+
+Declined
+
+Issuer Declined
+
+Soft Decline
+
+Do Not Honor
+
+Declined
+
+Issuer Declined
+
+Soft Decline
+
+Refer to Card Issuer
+
+Failed
+
+Application Error
+
+N/A
+
+N/A
+
+Adaptive 3DS and [Fallbacks](https://primer.io/docs/payments/fallbacks) have overlapping triggers. If both features are activated for a payment, Adaptive 3DS always has priority. If the second authorization attempt still fails, a fallback may be triggered.
+
+### [Processor 3DS](https://primer.io/docs/payments/3ds/overview#processor-3ds)
+
+There are a small proportion of processors that do not support third-party 3DS. In these instances, Primer seamlessly redirects the customer to the processor's 3DS challenge page instead. As Primer is not involved in the 3DS flow, there are several limitations around using processor 3DS, including:
+
+* It is incompatible with [fallbacks](https://primer.io/docs/payments/fallbacks) and the ["Perform 3DS" Action](https://primer.io/docs/automation/payments-app/perform-3ds-action).
+
+* There is not the same level of visibility into the 3DS flow so it is harder to debug any issues that may arise.
+
+Please reach out to us directly via our [Service Desk](https://primerapi.atlassian.net/servicedesk/customer/portal/11) if you are unsure if your processor only supports Processor 3DS.
+
+### [Supported card networks](https://primer.io/docs/payments/3ds/overview#supported-card-networks)
+
+The following card networks are supported for 3DS on Primer:
+
+* Visa
+
+* Mastercard
+
+* American Express (Amex)
+
+* Discover/Diners Club
+
+* JCB
+
+* Dankort/FBF
+
+* Union Pay (UPI)
+
+### [Start your integration](https://primer.io/docs/payments/3ds/overview#start-your-integration)
+
+Use our [Get Started](https://primer.io/docs/payments/3ds/get-started/web) guide to implement 3DS via Primer.
