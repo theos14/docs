@@ -9,13 +9,17 @@ A **Payment** is a first-class object that unifies the representation of a user 
 A Primer payment is made of:
 
 * a **payment status** that conforms to a unified payment lifecycle
+
 * **payment method information** such as card details
+
 * **order details** such as line items and currency
+
 * **customer details** such as contact information, shipping, and billing address
+
 * a **timeline** of events created throughout the lifecycle of the payment
 
 <Frame>
-  <img src="https://primer.io/docs/static/22c2ec11d31b1b9014794e716ad7d641/07a9c/what_is_a_payment.png"/>
+  <img src="https://primer.io/docs/static/22c2ec11d31b1b9014794e716ad7d641/07a9c/what_is_a_payment.png" />
 </Frame>
 
 <Info>
@@ -31,20 +35,20 @@ A payment always has a **payment status**. Each payment will progress through so
 A newly-created payment is assigned the status PENDING.
 
 <Frame>
-  <img src="https://primer.io/docs/static/5db7e2445cc9c2c5be2506cecf798399/07a9c/lifecycle.png"/>
+  <img src="https://primer.io/docs/static/5db7e2445cc9c2c5be2506cecf798399/07a9c/lifecycle.png" />
 </Frame>
 
-|`PENDING`|`AUTHORIZED`|`SETTLED` `PARTIALLY_SETTLED`|
-|-----|---|---|
-|The payment is awaiting a subsequent action or callback. This usually occurs with asynchronous processors. Prepare for this contingency by [setting up Webhooks](/docs/payments/webhooks).|The processor has authorized the payment and no further status-altering actions have been defined in your Workflow.| The processor has settled funds in your account. If the entirety of the payment amount has been settled, the payment will have the status `SETTLED`. <br/>Some processors allow for the [capture of only a part of the authorized amount](https://primer.io/docs/api/api-reference/payments-api/capture-payment#request.body.amount). If you leverage this capability, the payment status will be set to `PARTIALLY_SETTLED`.|
+| `PENDING`                                                                                                                                                                                  | `AUTHORIZED`                                                                                                        | `SETTLED` `PARTIALLY_SETTLED`                                                                                                                                                                                                                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| The payment is awaiting a subsequent action or callback. This usually occurs with asynchronous processors. Prepare for this contingency by [setting up Webhooks](/docs/payments/webhooks). | The processor has authorized the payment and no further status-altering actions have been defined in your Workflow. | The processor has settled funds in your account. If the entirety of the payment amount has been settled, the payment will have the status `SETTLED`. <br />Some processors allow for the [capture of only a part of the authorized amount](https://primer.io/docs/api/api-reference/payments-api/capture-payment#request.body.amount). If you leverage this capability, the payment status will be set to `PARTIALLY_SETTLED`. |
 
-|DECLINED|FAILED|CANCELLED|
-|--------|--------|--------|
-|The processor has declined the payment and no further status-altering actions have been defined in your Workflow. You may want to consider retrying certain declined payments.|This usually occurs when there is a processor gateway issue, such as a service disruption. Set up retries and [fallbacks](/docs/payments/fallbacks) to mitigate failures.|The payment was canceled prior to it being settled.|
+| DECLINED                                                                                                                                                                       | FAILED                                                                                                                                                                    | CANCELLED                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| The processor has declined the payment and no further status-altering actions have been defined in your Workflow. You may want to consider retrying certain declined payments. | This usually occurs when there is a processor gateway issue, such as a service disruption. Set up retries and [fallbacks](/docs/payments/fallbacks) to mitigate failures. | The payment was canceled prior to it being settled. |
 
-|SETTLING|
-|-----|
-|The payment has been submitted for settlement and funds will be settled later. This usually occurs with asynchronous processors. Prepare for this contingency by [setting up Webhooks](/docs/payments/webhooks).|
+| SETTLING                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| The payment has been submitted for settlement and funds will be settled later. This usually occurs with asynchronous processors. Prepare for this contingency by [setting up Webhooks](/docs/payments/webhooks). |
 
 ### Enforcing the payments lifecycle
 
@@ -56,13 +60,13 @@ The [Payments API](https://primer.io/docs/api/api-reference/payments-api/get-pay
 
 See below for the breakdown of the API requests and what's supported for each payment status (table scrolls horizontally):
 
-| API Request | PENDING | AUTHORIZED | SETTLING | SETTLED | PARTIALLY_SETTLED | CANCELLED | DECLINED | FAILED |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `POST /authorize` | Allow | Block | Block | Block | Block | Block | Allow | Allow |
-| `POST /cancel` | Allow | Allow | Allow | Block | Block | Block | Block | Block |
-| `POST /capture` | Block | Allow | Allow | Block | Allow | Block | Block | Block |
-| `POST /decline` | Allow | Block | Block | Block | Block | Block | Block | Block |
-| `POST /refund` | Block | Block | Block | Allow | Allow | Block | Block | Block |
+| API Request       | PENDING | AUTHORIZED | SETTLING | SETTLED | PARTIALLY\_SETTLED | CANCELLED | DECLINED | FAILED |
+| ----------------- | ------- | ---------- | -------- | ------- | ------------------ | --------- | -------- | ------ |
+| `POST /authorize` | Allow   | Block      | Block    | Block   | Block              | Block     | Allow    | Allow  |
+| `POST /cancel`    | Allow   | Allow      | Allow    | Block   | Block              | Block     | Block    | Block  |
+| `POST /capture`   | Block   | Allow      | Allow    | Block   | Allow              | Block     | Block    | Block  |
+| `POST /decline`   | Allow   | Block      | Block    | Block   | Block              | Block     | Block    | Block  |
+| `POST /refund`    | Block   | Block      | Block    | Allow   | Allow              | Block     | Block    | Block  |
 
 <Warning>
   Processors may not support all the actions for each payment status outlined in the above table e.g. some processors may support cancelling a `SETTLING` payment, whilst others may not.
@@ -75,13 +79,14 @@ Payments are created automatically by Universal Checkout - our unified client-si
 In both cases, the following data is required to create a payment:
 
 * An **order ID**
+
 * An **amount** (or a list of **line items**), and a **currency code**
+
 * A **payment method token**
 
 ### Order ID
 
 The Order ID offers a simple way for you to tie one or multiple payments to an order in your system.
-
 
 <Info>
   You can reuse the same order ID for multiple payments. This is handy to link multiple payments together.
@@ -102,13 +107,13 @@ By communicating directly with Primer's PCI-L1 tokenization service, Universal C
 Universal Checkout generates a payment method token regardless of the customer's chosen payment method. This enables you to reason about your checkout flow in a unified way.
 
 <Frame>
-  <img src="https://primer.io/docs/static/577ee686f9ffacce4cbcb5a4fc663232/07a9c/payment_creation.png"/>
+  <img src="https://primer.io/docs/static/577ee686f9ffacce4cbcb5a4fc663232/07a9c/payment_creation.png" />
 </Frame>
 
 <Info>
-Our agnostic tokenization service and centralized vault enable you to handle recurring payments, fallbacks, and retries across processors without compromising UX.
+  Our agnostic tokenization service and centralized vault enable you to handle recurring payments, fallbacks, and retries across processors without compromising UX.
 
-No more PSP-specific tokens — now **you** own your payment data.
+  No more PSP-specific tokens — now **you** own your payment data.
 </Info>
 
 ## Payment timeline
@@ -118,17 +123,17 @@ Available for every payment in the Dashboard, the payment timeline is the best r
 Navigate, search and filter your payments with an easy-to-use interface in the [Payments](https://dashboard.primer.io/payments) section of the Primer Dashboard.
 
 <Frame>
-  <img src="https://primer.io/docs/static/7effa02a26b9a38c8464c0627b43058d/07a9c/payments_timeline.png"/>
+  <img src="https://primer.io/docs/static/7effa02a26b9a38c8464c0627b43058d/07a9c/payments_timeline.png" />
 </Frame>
 
 Select a payment to see its detailed timeline of events.
 
 <Frame>
-  <img src="https://primer.io/docs/static/2366638b705c6507b44eb119126a3553/07a9c/payment_timeline_view.png"/>
+  <img src="https://primer.io/docs/static/2366638b705c6507b44eb119126a3553/07a9c/payment_timeline_view.png" />
 </Frame>
 
 **Primer is not a black box, but rather your payments infrastructure**. Select a specific event to see the requests and responses, providing full transparency into everything that’s happened to your payment throughout its journey.
 
 <Frame>
-  <img src="https://primer.io/docs/static/335e2f864078583f6ca654558d027ffd/07a9c/payment_details.png"/>
+  <img src="https://primer.io/docs/static/335e2f864078583f6ca654558d027ffd/07a9c/payment_details.png" />
 </Frame>

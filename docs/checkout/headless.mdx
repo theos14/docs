@@ -4,4 +4,563 @@ description: Lore Ipsum
 sidebarTitle: Headless Checkout
 ---
 
-This is a test
+# Get Started with Headless Checkout
+
+Where there is a need for more customization and control over the checkout experience, a headless version of Primer’s Universal Checkout is available.
+
+You can use Headless Universal Checkout with your UI, giving you more flexibility and allowing you to move faster when making design changes, while still having Universal Checkout capture sensitive PCI card data or other form data.
+
+If you're looking for a simpler way of integrating Universal Checkout, consider integrating our [Drop-In checkout](https://primer.io/docs/payments/universal-checkout/drop-in/get-started/ios).
+
+Not all payment methods are currently compatible with Headless Checkout.
+
+Please refer to [this table](https://primer.io/docs/payment-methods/available-payment-methods) to learn more about the payment methods available for Headless Checkout.
+
+## [Before you start](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#before-you-start)
+
+Before you start, make sure:
+
+* you are ready to [process a payment](https://primer.io/docs/payments/process-payments)
+
+* Universal Checkout is properly [configured in the dashboard](https://primer.io/docs/payments/universal-checkout/configure-universal-checkout-without-code)
+
+## [Create a client session](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#create-a-client-session)
+
+A **client session** is the starting point for integrating payments at Primer. You can attach any data associated with the `order` to your client session.
+
+Creating a client session provides you with a **client token**, a temporary key used to initialize the Universal Checkout.
+
+The information you include in the client session is used in the Dashboard:
+
+* to conditionally route payments with Workflows
+
+* to activate payment methods and other features in Universal Checkout
+
+So pass as much information as you can!
+
+### [Generate an API key](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#generate-an-api-key)
+
+Requests to our API are authenticated using an API key in the `X-Api-Key` header. Create an API key by visiting the [developer page](https://sandbox-dashboard.primer.io/developers/apiKeys) of the Primer Dashboard.
+
+Make sure to set the following scopes for your API Key:
+
+* `client_tokens:write`
+
+* `transactions:authorize`
+
+### [Make a client session request](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#make-a-client-session-request)
+
+On your server, create a client session with [POST`/client-session`](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token).
+
+Make sure to pass at least the following data:
+
+FieldDescription
+
+1. [orderId](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.orderId)
+
+Your reference for the payment.
+
+*Make sure to keep track of `orderId` - you will later receive updates to the payment via Webhooks. The payment will contain the `orderId` specified in the client session.*
+
+1. [currencyCode](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.currencyCode)
+
+The three-letter currency code in [ISO 4217 format](https://en.wikipedia.org/wiki/ISO_4217#Active_codes).
+e.g. use `USD` for US dollars.
+
+1. [order](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.order)
+
+2. ↳ 
+
+
+
+
+   [lineItems](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.order.lineItems)
+
+The details of the line items of the order.
+
+ℹ️
+
+The body of a successful response contains a [clientToken](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#response.body.clientToken) that you will use to initialize the Universal Checkout.
+
+Here is how the client session request to the Primer API should look like:
+
+```bash
+curl --location --request \ POST 'https://api.sandbox.primer.io/client-session' \ --header 'X-Api-Key: <YOUR_API_KEY>' \ --header 'X-Api-Version: 2.4' \ --header 'Content-Type: application/json' \ --data '{    "orderId": "<YOUR_ORDER_ID>",    "currencyCode": "GBP",    "amount": 5000,    "order": {      "lineItems": [{        "itemId": "shoes-123",        "amount": 2500,        "quantity": 2      }],      "countryCode": "GB"    } }'# Here is a (heavily truncated) example response{  "clientToken": "THE_CHECKOUT_SESSION_TOKEN",  "clientExpirationDate": "2022-03-08T14:00:00Z",  "orderId": "<YOUR_ORDER_ID>",  "currencyCode": "GBP",  "amount": 5000,    "order": {    "lineItems": [{      "itemId": "shoes-123",      "amount": 2500,      "quantity": 2    }],    "countryCode": "GB",  }}
+```
+
+
+
+## [Get Started](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#get-started)
+
+Primer Headless Universal Checkout works in a simple way:
+
+1. 1
+
+
+
+
+   Get a `clientToken` from your server.
+
+2. 2
+
+
+
+
+   Start Primer Headless Universal Checkout with the client token.
+
+3. 3
+
+
+
+
+   Primer Headless Universal Checkout will then return the `available payment methods` for the session initiated. Those payment methods that have been configured in the Dashboard and whose conditions match the current client session will be returned.
+
+4. 4
+
+
+
+
+   You show the user the list of available payment methods.
+
+5. 5
+
+
+
+
+   When the user selects a payment method, show its UI to enable the user to enter their credentials. Depending on the payment method, you will have to either ask the SDK to render it, or build the UI yourself.
+
+6. 6
+
+
+
+
+   Primer's Headless Universal Checkout will then create a payment for you and manage its lifecycle. You will receive a confirmation of payment with a callback to indicate the checkout flow has completed.
+
+[Web](https://primer.io/docs/payments/universal-checkout/headless/get-started/web)[iOS](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios)[Android](https://primer.io/docs/payments/universal-checkout/headless/get-started/android)[React Native](https://primer.io/docs/payments/universal-checkout/headless/get-started/react-native)
+
+This documentation is only relevant for **v2.17.0** and upward.
+
+The **migration guide** to update from v2.16.1 is available [here](https://primer.io/docs/changelog/migration-guides/headless-mobile-out-of-beta/ios).
+
+The documentation for versions v2.5.0 up to v2.16.1 is available [here](https://primer.io/docs/payments/universal-checkout/headless/headless-universal-checkout-v2.5.0/ios).
+
+Backend API V2.4 enhances reliability and minimizes synchronization issues with external processors by significantly extending payment timeouts. This longer timeout accommodates external processor limits and internal operations, ensuring more reliable transaction handling. These improvements are fully supported starting with Primer iOS SDK 2.34.0, so upgrading your app to use the newest SDK version is highly recommended when creating client sessions with API V2.4.
+
+## [Install the SDK](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#install-the-sdk)
+
+### [With CocoaPods](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#with-cocoapods)
+
+Add the following in your `Podfile`:
+
+```ruby
+use_frameworks!target 
+
+'MyApp' do  
+
+    # 👇 Add this line  pod 'PrimerSDK'  
+    
+    # ...
+    
+end
+
+```
+
+
+
+Then run `pod install` to install `PrimerSDK` on your workspace.
+
+<Info>
+  In case you encounter an error that the bundle needs signing on Xcode 14, add the following post-install script in your podfile.
+
+
+
+  ```
+  post_install do |installer|  
+    installer.pods_project.targets.each do |target|    
+      if target.respond_to?(:product_type) and target.product_type == "com.apple.product-type.bundle"      
+        target.build_configurations.each do |config|         
+          config.build_settings['CODE_SIGNING_ALLOWED'] = 'NO'      
+          end    
+         end  
+        end
+       end
+  ```
+
+
+</Info>
+
+### [With Swift Package Manager](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#with-swift-package-manager)
+
+The Swift Package Manager is a tool for automating the distribution of Swift code and is integrated into Xcode. In order to add PrimerSDK with Swift Package Manager:
+
+1. 1
+
+
+
+
+   Select your project, and then navigate to `Package Dependencies`
+
+2. 2
+
+
+
+
+   Click on the **+** button at the bottom-left of the `Packages` section
+
+3. 3
+
+
+
+
+   Paste [https://github.com/primer-io/primer-sdk-ios.git](https://github.com/primer-io/primer-sdk-ios.git) into the **Search Bar,** or search for `primer-sdk-ios` in the **Search Bar**.
+
+4. 4
+
+
+
+
+   Press **Add Package**
+
+5. 5
+
+
+
+
+   Let Xcode download the package and set everything up
+
+For more details about SDK versions, please see our [changelog](https://www.notion.so/primerio/iOS-SDK-5a86e1d933fc4fae83b1497f80c7310a).
+
+## [Step 1: Prepare Headless Universal Checkout](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-1-prepare-headless-universal-checkout)
+
+First, import the `PrimerSDK`. Then call `PrimerHeadlessUniversalCheckout.current.start` to start the checkout session with your client token and a delegate to receive important events.
+
+The completion handler will return the available payment methods for the current session. We will use them later to present a list of payment methods.
+
+Each available payment method contains the following:
+
+* `paymentMethodType`
+
+
+
+
+  a unique string identifier for the payment method (e.g. `ADYEN_IDEAL`)
+
+* `paymentMethodName`
+
+
+
+
+  a user friendly English localized string identifier for the payment method (e.g. `Apple Pay`)
+
+* `supportedPrimerSessionIntents`
+
+
+
+
+  an array of `PrimerSessionIntent` which defines what intents can be used with this payment method (i.e. `.checkout` or `.vault`).
+
+* `paymentMethodManagerCategories`
+
+
+
+
+  an array which defines the payment method managers that can be used with this payment method (i.e. `.nativeUI` or `.rawData`).
+
+* \[Optional] `requiredInputDataClass`
+
+
+
+
+  the class type that should be used with the raw data manager.
+
+Implement the `primerHeadlessUniversalCheckoutDidCompleteCheckoutWithData(_:)` which will notify you when the checkout is complete with a payment.
+
+```swift
+import UIKit// 👇 Import the SDKimport PrimerSDKclass ViewController: UIViewController {    // ...    var availablePaymentMethods: [PrimerHeadlessUniversalCheckout.PaymentMethod]?    override func viewDidLoad() {        super.viewDidLoad()        // ...        // 👇 Start Headless Universal Checkout with your session's client token        PrimerHeadlessUniversalCheckout.current.start(withClientToken: clientToken, delegate: self) { availablePaymentMethods, err in            if let err = err {                // Handle error            } else if let availablePaymentMethods = availablePaymentMethods {                // Payment methods that are available for this session                self.availablePaymentMethods = availablePaymentMethods            }        }    }}extension ViewController: PrimerHeadlessUniversalCheckoutDelegate {    // 👇 [Required] This function will return the checkout data once the payment is finished    func primerHeadlessUniversalCheckoutDidCompleteCheckoutWithData(_ data: PrimerCheckoutData) {        // ...    }}
+```
+
+## [Step 2: Render available payment methods UI](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-2-render-available-payment-methods-ui)
+
+You should now have the available payment methods for the client session.
+
+You can render your own UI for each payment method, or take advantage of the `PrimerHeadlessUniversalCheckout.AssetsManager` helper to get access to payment methods' assets.
+
+```swift
+do {    let paymentMethodAsset = try PrimerHeadlessUniversalCheckout.AssetsManager.getPaymentMethodAsset(for: paymentMethod.paymentMethodType)} catch {    // Handle error}
+```
+
+The payment method asset contains the following:
+
+* `paymentMethodType`
+
+
+
+
+  a unique string identifier for the payment method
+
+* `paymentMethodName`
+
+
+
+
+  a user friendly English localized string identifier for the payment method (e.g. `Apple Pay`)
+
+* `paymentMethodLogo`
+
+
+
+
+  an instance of the `PrimerPaymentMethodLogo`
+
+* `paymentMethodBackgroundColor`
+
+
+
+
+  an instance of the `PrimerPaymentMethodBackgroundColor`
+
+The `PrimerPaymentMethodLogo` holds `UIImage` objects for different scenarios
+
+* \[Optional] `colored`
+
+
+
+
+  a `UIImage` to be used anywhere
+
+* \[Optional] `dark`
+
+
+
+
+  a `UIImage` to be used in dark mode
+
+* \[Optional] `light`
+
+
+
+
+  a `UIImage` to be used in light mode
+
+The `PrimerPaymentMethodBackgroundColor` holds `UIColor` objects for different scenarios
+
+* \[Optional] `colored`
+
+
+
+
+  a `UIColor` to be used anywhere
+
+* \[Optional] `dark`
+
+
+
+
+  a `UIColor` to be used in dark mode
+
+* \[Optional] `light`
+
+
+
+
+  a `UIColor` to be used in light mode
+
+💡
+
+`colored`, `dark` and `light` variables are all optional, but it is guaranteed that the objects will contain at least one of them.
+
+With the above images and colors you can build your own payment methods UI 💪
+
+## [Step 3: Implement a payment method manager](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-3-implement-a-payment-method-manager)
+
+Now that your UI presents the available payment methods, let's use the payment method managers to allow users to go through the payment method flow.
+
+A payment method manager is a class abstracting the state and UI of a given payment method. Currently, 3 payment methods managers are supported, each of them responsible for a different payment method category.
+
+* `PrimerHeadlessUniversalCheckout.NativeUIManager`
+
+
+
+
+  The native UI manager is responsible for payment methods that need to present their own UI (e.g. Apple Pay).
+
+* `PrimerHeadlessUniversalCheckout.RawDataManager`
+
+
+
+
+  The raw data manager is responsible for payment methods that need to receive data from the user (e.g. card form).
+
+💡
+
+Bear in mind that a payment method could be implemented by more than one payment method manager. Check which managers are supported for each payment method in the `paymentMethodManagerCategories` of the payment method objects received in [Step 1](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-1-prepare-headless-universal-checkout).
+
+❗
+
+A manager can only be used after Headless Checkout has been initialized. We consider Headless Checkout to be initialized after the `primerHeadlessUniversalCheckoutDidLoadAvailablePaymentMethods` is triggered and payment methods for the provided `clientToken` are returned.
+
+If that’s not the case Headless Checkout throws a `uninitialized-sdk-session` error.
+
+If a payment method manager gets initialized with an unsupported payment method type (i.e. the payment method's object doesn't include the manager's category), Headless Checkot throws an `unsupported-payment-method-type` error.
+
+### [Native UI manager](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#native-ui-manager)
+
+This manager can be used for the payment methods that contain `.nativeUI` in the `paymentMethodManagerCategories` array.
+
+The native UI manager is typically used for the payment methods that need to present their own UI, such as Apple Pay.
+
+```swift
+import UIKitimport PrimerSDKclass ViewController: UIViewController {    // ...    @IBAction func paymentMethodButtonTapped(_ sender: UIButton) {        do {            // 👇 Create the payment method manager            let nativeUIPaymentMethodManager = try PrimerHeadlessUniversalCheckout.NativeUIManager(paymentMethodType: paymentMethod.paymentMethodType)            // 👇 Show the payment method            try nativeUIPaymentMethodManager.showPaymentMethod(intent: .checkout)        } catch {            // Handle error        }    }}
+```
+
+❗
+
+Make sure that the intent passed in the `showPaymentMethod` function (`.checkout` for making a payment, `.vault` for vaulting the payment method) is supported by the payment method. Check the `supportedPrimerSessionIntents` array of the payment method.
+
+That's it! The SDK will present the native UI to the user, and then attempt to create a payment.
+
+The payment's data will be returned on `primerHeadlessUniversalCheckoutDidCompleteCheckoutWithData` configured in [Step 1](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-1-prepare-headless-universal-checkout).
+
+### [Raw data manager](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#raw-data-manager)
+
+This manager can be used for any payment method that contains `.rawData` in the `paymentMethodManagerCategories` array.
+
+The raw data manager can be used for payment methods that allow you to capture customer data yourself. This gives you full control over the UI while still taking advantage of all the features that make Primer great.
+
+At any point, you can validate your data by calling `setRawData()` and by listening to `primerRawDataManager(_: dataIsValid: errors:)` - the SDK will return errors specific to each required input.
+
+Once the data is valid, send it to Headless Checkout for further processing by calling `submit()`.
+
+#### [Configure the `PrimerHeadlessUniversalCheckout.RawDataManager` and conform to its delegate](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#two)
+
+Assuming that the payment method contains `.rawData` in the `paymentMethodManagerCategories`, create your raw data manager, and set its delegate.
+
+1234567891011121314151617181920212223
+
+import UIKitimport PrimerSDKclass ViewController: UIViewController \{    // ...    var rawDataManager: PrimerHeadlessUniversalCheckout.RawDataManager!    override func viewDidLoad() \{        super.viewDidLoad()        // ...        do \{            // 👇 Initialize the raw data manager            self.rawDataManager = try PrimerHeadlessUniversalCheckout.RawDataManager(paymentMethodType: paymentMethod.paymentMethodType, delegate: self)        } catch \{            // Handle error        }    }}
+
+swift
+
+copy
+
+#### [Build a form](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#build-a-form)
+
+Build your own form to let the users enter their data. You can use the `requiredInputElementTypes` of the `PrimerHeadlessUniversalCheckout.RawDataManager` object to get informed about what input fields you have to render.
+
+The `requiredInputElementTypes` is an array that can contain any of the following:
+
+* `.cardNumber`
+
+* `.expiryDate`
+
+* `.cvv`
+
+* `.cardholderName`
+
+* `.phoneNumber`
+
+* `.retailer`
+
+1234567891011121314151617181920212223242526272829303132
+
+func renderForm() \{    let inputElementTypes = primerRawDataManager.requiredInputElementTypes    for inputElementType in inputElementTypes \{        switch inputElementType \{            case .cardNumber:                // Create a card number input element and add it to your view                break            case .expiryDate:                // Create a expiry date input element and add it to your view                break            case .cvv:                // Create a CVV input element and add it to your view                break            case .cardholderName:                // Create a cardholder name input element and add it to your view                break            case .phoneNumber:                // Create a phone number input element and add it to your view                break            case .retailer:                // Create a retailer input element and add it to your view                break            }        }    }}
+
+swift
+
+copy
+
+#### [Build and validate your raw data](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#build-and-validate-your-raw-data)
+
+Use the class type that has been provided in the `requiredInputDataClass` of the payment method to build the captured data, and pass it to the manager. Here is an example for card payments:
+
+1234567891011121314151617181920
+
+import UIKitimport PrimerSDKclass ViewController: UIViewController \{    // ...    func dataDidChange() \{        // 👇 Create your raw data        let rawCardData = PrimerCardData(            cardNumber: cardnumberTextField.text,            expiryDate: expiryDateTextField.text, // 👈 ex. 03/2030            cvv: cvvTextField.text,            cardholderName: cardholderNameTextField.text,        )        // 👇 Set your raw data on the manager        self.rawDataManager.rawData = rawCardData    }}
+
+swift
+
+copy
+
+When you set set the data on the raw data manager, the manager validates it and notifies you via the delegate functions. You can then change the state of your submit button based on the validation changes.
+
+1234567
+
+extension ViewController: PrimerHeadlessUniversalCheckoutRawDataManagerDelegate \{    // 👇 Implement the validation function to receive updates on the raw data validation changes    func primerRawDataManager(\_ rawDataManager: PrimerHeadlessUniversalCheckout.RawDataManager, dataIsValid isValid: Bool, errors: \[Error]?) \{        // Enable your submit button when \`isValid == true\`    }}
+
+swift
+
+copy
+
+The delegate also provides a function that will notify you of metadata updates, e.g. that the card type was detected.
+
+#### [Submit the form's data](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#submit-the-forms-data)
+
+Once the data has been validated, call the manager's `submit()` function.
+
+123456789101112
+
+import UIKitimport PrimerSDKclass ViewController: UIViewController \{        // ...        @IBAction func payButtonTapped(\_ sender: UIButton) \{            // 👇 Submit the data that have been set in prior steps            self.rawDataManager.submit()        }}
+
+swift
+
+copy
+
+When the function `submit()` is called, the SDK will attempt to create a payment. The payment's data will be returned on `primerHeadlessUniversalCheckoutDidCompleteCheckoutWithData` configured in [Step 1](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-1-prepare-headless-universal-checkout).
+
+## [Step 4: Handle errors](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#step-4-handle-errors)
+
+Some functions can throw and they will fail immediately. All other errors will end up in the SDK’s optional delegate function `func primerHeadlessUniversalCheckoutDidFail(withError:checkoutData:)`, where you can handle them accordingly.
+
+123456
+
+extension ViewController: PrimerHeadlessUniversalCheckoutDelegate \{    func primerHeadlessUniversalCheckoutDidFail(withError err: Error, checkoutData: PrimerCheckoutData?) \{        // Handle the error    }}
+
+swift
+
+copy
+
+## [Advanced Configuration](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#advanced-configuration)
+
+For more customization on your needs, you can listen to all events posted by Headless Universal Checkout and react to them. Visit the [API reference](https://www.notion.so/primerio/Headless-API-Reference-e162338560a7477ebf0dc71bf10558dc) for a full list of the delegate functions.
+
+## [Prepare 3DS](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#prepare-3ds)
+
+* In order to make the SDK lightweight, 3DS requires the addition of the Primer 3DS library. Check out our [guide](https://primer.io/docs/payments/3ds/get-started/ios#three-handle-3ds-in-universal-checkout) on how to add the Primer 3DS library to your iOS app.
+
+* When the user pays by card, the Workflow will decide whether or not a 3DS challenge is required. If so, Headless Universal Checkout will automatically render the 3DS challenge.
+
+* To improve 3DS success rates, it is recommended to pass the following elements in the Client Session:
+
+FieldDescription
+
+1. [customer](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.customer)
+
+2. ↳ 
+
+
+
+
+   [emailAddress](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.customer.emailAddress)
+
+The customer's email address
+
+1. [customer](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.customer)
+
+2. ↳ 
+
+
+
+
+   [billingAddress](https://primer.io/docs/api/api-reference/client-session-api/create-client-side-token#request.body.customer.billingAddress)
+
+The customer's billing address
+
+Learn more about [how to configure 3DS](https://primer.io/docs/payments/3ds/get-started/ios)!
+
+## [Did It Work?](https://primer.io/docs/payments/universal-checkout/headless/get-started/ios#did-it-work)
+
+If everything went well, you should be able to see the payment you just created on your [Dashboard](https://sandbox-dashboard.primer.io/) under the Payments menu.![Payment list](https://primer.io/docs/static/d22d02fc86f6c3dba7d7bbbb2c7d0eba/d9199/payment_list.png "Payment list")
+
+***
+
+[](https://primer.io/)
