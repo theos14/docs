@@ -342,7 +342,6 @@
   "fonts": {
     "heading": {
       "family": "Interdisplay",
-      "weight": 500,
       "format": "woff2",
       "source": "https://cdn.prod.website-files.com/65bcc4714739c54deeb9bac7/675aeb4efaabe1ba38ca0132_InterDisplay-Medium.woff2"
     }
