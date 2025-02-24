@@ -202,29 +202,177 @@
       },
       {
         "tab": "API Reference",
-        "groups": [
+        "versions": [
           {
-            "group": "Introduction",
-            "pages": [
-              "docs/api/v2.3/introduction/getting-started",
-              "docs/api/v2.3/introduction/authentication",
-              "docs/api/v2.3/introduction/api-responses"
-            ]
-          },
-          {
-            "group": "API Reference",
-            "pages": [
+            "version": "v2.3",
+            "anchors": [
               {
-                "group": "Client Session API",
-                "pages": [
-                  "docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token"
+                "anchor": "Getting Started",
+                "icon": "rocket",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      "docs/api/v2.3/getting-started/overview",
+                      "docs/api/v2.3/getting-started/authentication",
+                      "docs/api/v2.3/getting-started/api-responses",
+                      "docs/api/v2.3/getting-started/idempotency-key",
+                      "docs/api/v2.3/getting-started/loyalty-transactions"
+                    ]
+                  }
                 ]
               },
               {
-                "group": "Loyalty API",
-                "pages": [
-                  "docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"
+                "anchor": "API Reference",
+                "icon": "book-open",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      {
+                        "group": "Client Session API",
+                        "pages": [
+                          "docs/api/v2.3/api-reference/client-session-api/retrieve-client-side-token",
+                          "docs/api/v2.3/client-session-api/create-client-side-token",
+                          "docs/api/v2.3/client-session-api/update-client-side-token"
+                        ]
+                      },
+                      {
+                        "group": "Payments API",
+                        "pages": [
+                          "docs/api/v2.3/api-reference/payments-api/search",
+                          "docs/api/v2.3/api-reference/payments-api/create-payment",
+                          "docs/api/v2.3/api-reference/payments-api/authorize-payment"
+                        ]
+                      },
+                      {
+                        "group": "Payment Methods API",
+                        "pages": [
+                          "docs/api/v2.3/api-reference/payment-methods-api/save",
+                          "docs/api/v2.3/api-reference/payment-methods-api/list"
+                        ]
+                      },
+                      {
+                        "group": "Loyalty API",
+                        "pages": [
+                          "docs/api/v2.3/api-reference/loyalty-api/get-loyalty-customer"
+                        ]
+                      }
+                    ]
+                  }
                 ]
+              },
+              {
+                "anchor": "Webhooks",
+                "icon": "webhook",
+                "groups": [
+                  {
+                    "group": "Payment Webhooks",
+                    "pages": [
+                      "docs/api/v2.3/webhooks/payment-webhooks/payment-status",
+                      "docs/api/v2.3/webhooks/payment-webhooks/get-balance"
+                    ]
+                  },
+                  {
+                    "group": "Dispute Chargeback Webhooks",
+                    "pages": [
+                      "docs/api/v2.3/webhooks/dispute-webhooks/dispute-open"  ,
+                      "docs/api/v2.3/webhooks/dispute-webhooks/dispute-status"
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "Changelog",
+                "icon": "lines-leaning",
+                "pages": ["docs/api/v2.3/changelog"]
+              }
+            ]
+          },
+              {
+            "version": "v2.4",
+            "anchors": [
+              {
+                "anchor": "Getting Started",
+                "icon": "rocket",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      "docs/api/v2.4/getting-started/overview",
+                      "docs/api/v2.4/getting-started/authentication",
+                      "docs/api/v2.4/getting-started/api-responses",
+                      "docs/api/v2.4/getting-started/idempotency-key",
+                      "docs/api/v2.4/getting-started/loyalty-transactions"
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "API Reference",
+                "icon": "book-open",
+                "groups": [
+                  {
+                    "group": "Getting Started",
+                    "pages": [
+                      {
+                        "group": "Client Session API",
+                        "pages": [
+                          "docs/api/v2.4/client-session-api/retrieve-client-session",
+                          "docs/api/v2.4/client-session-api/create-client-session",
+                          "docs/api/v2.4/client-session-api/update-client-session"
+                        ]
+                      },
+                      {
+                        "group": "Payments API",
+                        "pages": [
+                          "docs/api/v2.4/payments-api/search",
+                          "docs/api/v2.4/payments-api/create-payment",
+                          "docs/api/v2.4/payments-api/authorize-payment"
+                        ]
+                      },
+                      {
+                        "group": "Payment Methods API",
+                        "pages": [
+                          "docs/api/v2.4/payment-methods-api/save",
+                          "docs/api/v2.4/payment-methods-api/list"
+                        ]
+                      },
+                      {
+                        "group": "Loyalty API",
+                        "pages": [
+                          "docs/api/v2.4/loyalty-api/get-balance",
+                          "docs/api/v2.4/loyalty-api/list"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "Webhooks",
+                "icon": "webhook",
+                "groups": [
+                  {
+                    "group": "Payment Webhooks",
+                    "pages": [
+                      "docs/api/v2.4/payment-webhook/payment-status",
+                      "docs/api/v2.4/payment-webhook/get-balance"
+                    ]
+                  },
+                  {
+                    "group": "Dispute Chargeback Webhooks",
+                    "pages": [
+                      "docs/api/v2.4/dispute-webhook/dispute-open"  ,
+                      "docs/api/v2.4/dispute-webhook/dispute-status"
+                    ]
+                  }
+                ]
+              },
+              {
+                "anchor": "Changelog",
+                "icon": "lines-leaning",
+                "pages": ["docs/api/v2.4/changelog"]
               }
             ]
           }
@@ -333,9 +481,15 @@
   "navbar": {
     "primary": {
       "type": "button",
-      "label": "Contact sales",
+      "label": "Contact support",
       "href": "https://primer.io/contact-us"
-    }
+    },
+    "links": [
+      {
+        "label": "Contact Sales",
+        "href": "https://primer.io/contact-us"
+      }
+    ]
   },
   "footer": {
     "socials": {
