@@ -443,6 +443,44 @@
                   ]
                 }
               ]
+            },
+            {
+              "anchor": "Payment Service Providers",
+              "icon": "gears",
+              "groups": [
+                {
+                  "group": "Payment Service Providers",
+                  "pages": [
+                    "docs/connections/psps/overview",
+                    {
+                      "group": "Guides",
+                      "pages": [
+                        "docs/connections/psps/guides/adyen",
+                        "docs/connections/psps/guides/stripe"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+           {
+              "anchor": "Workflow Apps",
+              "icon": "grid-2-plus",
+              "groups": [
+                {
+                  "group": "Workflow Apps",
+                  "pages": [
+                    "docs/connections/workflow-apps/overview",
+                    {
+                      "group": "Guides",
+                      "pages": [
+                        "docs/connections/workflow-apps/guides/mailchimp",
+                        "docs/connections/workflow-apps/guides/slack"
+                      ]
+                    }
+                  ]
+                }
+              ]
             }
         ]
       },
