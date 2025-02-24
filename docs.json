@@ -418,7 +418,11 @@
                         "group": "Guides",
                         "pages": [
                           "docs/connections/payment-methods/guides/card/overview",
-                          "docs/connections/payment-methods/guides/apple-pay/overview"
+                          {
+                            "group": "Apple Pay",
+                            "pages" ["docs/connections/payment-methods/guides/apple-pay/overview","docs/connections/payment-methods/guides/apple-pay/direct-integration"]
+                          }
+                          
                         ]
                       }
                   ]
