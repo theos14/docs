@@ -12,7 +12,7 @@
     "tabs": [
       {
         "tab": "Home",
-        "pages": ["home"]
+        "pages": ["home1"]
       },
       {
         "tab": "Documentation",
@@ -256,7 +256,7 @@
   },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "dark": "/logo/light.svg",
     "href": "https://primer.io/"
   },
   "appearance": {
