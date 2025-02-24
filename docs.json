@@ -189,8 +189,7 @@
             "icon": "chart-simple",
             "groups": [{
               "group": "Observability",
-              "pages": ["docs/workflows/utilities/conditions",
-                  "docs/workflows/utilities/split"]
+              "pages": ["docs/observability/overview"]
             }]
           },
           {
