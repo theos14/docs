@@ -119,15 +119,27 @@
             "groups": [{
               "group": "Disputes",
               "pages": [
-              "docs/disputes/overview",
-              "docs/disputes/dispute-lifecycle",
-              "docs/disputes/manage-disputes"
+                {
+                  "group": "Overview",
+                  "icon": "book-open",
+                  "pages": ["docs/disputes/overview"]
+                },
+                {
+                  "group": "Dispute Lifecycle",
+                  "icon": "book-open",
+                  "pages": ["docs/disputes/dispute-lifecycle"]
+                },
+                {
+                  "group": "Manage Disputes",
+                  "icon": "book-open",
+                  "pages": ["docs/disputes/manage-disputes"]
+                }
             ]
             }]
           },
           {
            "anchor": "Workflows",
-            "icon": "chart-diagram",
+            "icon": "arrow-progress",
             "groups": [{
               "group": "Workflows",
               "pages": [
