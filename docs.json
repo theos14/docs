@@ -21,13 +21,20 @@
           {
             "anchor": "Get started",
             "icon": "",
-             "pages": [
-              "docs/get-started/overview",
-              "docs/get-started/set-up-a-workflow",
-              "docs/get-started/connect-a-processor",
-              "docs/get-started/use-cases",
-              "docs/get-started/best-practices"
-            ]
+            "groups": [{
+                "group": "Getting Started",
+                "pages": [
+                "docs/get-started/overview",
+                 {
+                   "group": "Workflows",
+                   "pages":["docs/get-started/set-up-a-workflow","docs/get-started/connect-a-processor"]
+                 }, 
+                "docs/get-started/set-up-a-workflow",
+                "docs/get-started/connect-a-processor",
+                "docs/get-started/use-cases",
+                "docs/get-started/best-practices"
+              ]
+            }]
           },
           {
             "anchor": "Concepts",
