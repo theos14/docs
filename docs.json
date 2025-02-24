@@ -251,7 +251,15 @@
               ]
             }
           ]
-        }
+        },
+      {
+        "tab": "Connections",
+        "pages": []
+      },
+      {
+        "tab": "Knowledge Base",
+        "pages": []
+      }
     ]
   },
   "logo": {
