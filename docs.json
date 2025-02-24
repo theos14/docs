@@ -17,14 +17,11 @@
       },
       {
         "tab": "Documentation",
-        "groups": [
+        "anchors": [
           {
-            "group": "Home Page",
-            "pages": ["docs/home"]
-          },
-          {
-            "group": "Get Started",
-            "pages": [
+            "anchor": "Get started",
+            "icon": "",
+             "pages": [
               "docs/get-started/overview",
               "docs/get-started/set-up-a-workflow",
               "docs/get-started/connect-a-processor",
@@ -33,7 +30,8 @@
             ]
           },
           {
-            "group": "Concepts",
+            "anchor": "Concepts",
+            "icon": "",
             "pages": [
               "docs/concepts/overview",
               "docs/concepts/primer-payment",
@@ -51,7 +49,8 @@
             ]
           },
           {
-            "group": "Payment Operations",
+            "anchor": "Payment Operations",
+            "icon": "",
             "pages": [
               "docs/payment-operations/overview",
               "docs/payment-operations/capture",
@@ -62,7 +61,8 @@
             ]
           },
           {
-            "group": "Checkout",
+           "anchor": "Checkout",
+            "icon": "",
             "pages": [
               "docs/checkout/overview",
               "docs/checkout/universal-checkout",
@@ -84,7 +84,8 @@
             ]
           },
           {
-            "group": "Features",
+           "anchor": "Features",
+            "icon": "",
             "pages": [
               "docs/features/overview",
               "docs/features/save-payment-methods",
@@ -99,7 +100,8 @@
             ]
           },
           {
-            "group": "Disputes",
+           "anchor": "Disputes",
+            "icon": "",
             "pages": [
               "docs/disputes/overview",
               "docs/disputes/dispute-lifecycle",
@@ -107,7 +109,8 @@
             ]
           },
           {
-            "group": "Workflows",
+           "anchor": "Workflows",
+            "icon": "",
             "pages": [
               "docs/workflows/overview",
               "docs/workflows/create-a-workflow",
@@ -150,15 +153,18 @@
             ]
           },
           {
-            "group": "Observability",
+           "anchor": "Observability",
+            "icon": "",
             "pages": []
           },
           {
-            "group": "Monitors",
+           "anchor": "Reconciliation",
+            "icon": "",
             "pages": []
           },
           {
-            "group": "Reconciliation",
+           "anchor": "Monitors",
+            "icon": "",
             "pages": []
           }
         ]
