@@ -12,29 +12,31 @@
     "tabs": [
       {
         "tab": "Home",
-        "hidden": true,
-        "pages": ["home"]
+        "pages": ["home1"]
       },
       {
         "tab": "Documentation",
-        "groups": [
+        "anchors": [
           {
-            "group": "Home Page",
-            "pages": ["docs/home"]
+            "anchor": "Getting started",
+            "icon": "book-open",
+            "groups": [{
+                "group": "Getting Started",
+                "pages": [
+                "docs/get-started/welcome-to-primer",
+                "docs/get-started/set-up-a-workflow",
+                "docs/get-started/connect-a-processor",
+                "docs/get-started/use-cases",
+                "docs/get-started/best-practices"
+              ]
+            }]
           },
           {
-            "group": "Get Started",
-            "pages": [
-              "docs/get-started/overview",
-              "docs/get-started/set-up-a-workflow",
-              "docs/get-started/connect-a-processor",
-              "docs/get-started/use-cases",
-              "docs/get-started/best-practices"
-            ]
-          },
-          {
-            "group": "Concepts",
-            "pages": [
+            "anchor": "Concepts",
+            "icon": "brain",
+            "groups": [{
+              "group": "Concepts",
+              "pages": [
               "docs/concepts/overview",
               "docs/concepts/primer-payment",
               "docs/concepts/payment-lifecycle",
@@ -49,10 +51,14 @@
               "docs/concepts/currencies",
               "docs/concepts/filters"
             ]
+            }]
           },
           {
-            "group": "Payment Operations",
-            "pages": [
+            "anchor": "Payment Operations",
+            "icon": "money-bills",
+            "groups": [{
+              "group": "Payment Operations",
+              "pages": [
               "docs/payment-operations/overview",
               "docs/payment-operations/capture",
               "docs/payment-operations/cancel",
@@ -60,10 +66,14 @@
               "docs/payment-operations/adjust-authorization",
               "docs/payment-operations/search"
             ]
+            }]
           },
           {
-            "group": "Checkout",
-            "pages": [
+           "anchor": "Checkout",
+            "icon": "cart-shopping",
+            "groups": [{
+              "group": "Checkout",
+              "pages": [
               "docs/checkout/overview",
               "docs/checkout/universal-checkout",
               "docs/checkout/client-session",
@@ -82,10 +92,14 @@
                 ]
               }
             ]
+            }]        
           },
           {
-            "group": "Features",
-            "pages": [
+           "anchor": "Features",
+            "icon": "layer-group",
+            "groups": [{
+              "group": "Features",
+              "pages": [
               "docs/features/overview",
               "docs/features/save-payment-methods",
               "docs/features/fingerprinting",
@@ -97,18 +111,26 @@
               "docs/features/three-d-secure",
               "docs/features/network-tokenization"
             ]
+            }]
           },
           {
-            "group": "Disputes",
-            "pages": [
-              "docs/disputes/overview",
-              "docs/disputes/dispute-lifecycle",
-              "docs/disputes/manage-disputes"
+           "anchor": "Disputes",
+            "icon": "triangle-exclamation",
+            "groups": [{
+              "group": "Disputes",
+              "pages": [
+                "docs/disputes/overview",
+                "docs/disputes/dispute-lifecycle",
+                "docs/disputes/manage-disputes"
             ]
+            }]
           },
           {
-            "group": "Workflows",
-            "pages": [
+           "anchor": "Workflows",
+            "icon": "arrow-progress",
+            "groups": [{
+              "group": "Workflows",
+              "pages": [
               "docs/workflows/overview",
               "docs/workflows/create-a-workflow",
               {
@@ -148,18 +170,33 @@
               },
               "docs/workflows/use-cases"
             ]
+            }]
           },
           {
-            "group": "Observability",
-            "pages": []
+           "anchor": "Observability",
+            "icon": "chart-simple",
+            "groups": [{
+              "group": "Observability",
+              "pages": ["docs/observability/overview"]
+            }]
           },
           {
-            "group": "Monitors",
-            "pages": []
+           "anchor": "Reconciliation",
+            "icon": "file-lines",
+            "groups": [{
+              "group": "Reconciliation",
+              "pages": ["docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"]
+            }]
           },
           {
-            "group": "Reconciliation",
-            "pages": []
+           "anchor": "Monitors",
+            "icon": "wave-pulse",
+            "groups": [{
+              "group": "Monitors",
+              "pages": ["docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"]
+            }]
           }
         ]
       },
@@ -216,20 +253,81 @@
               ]
             }
           ]
-        }
+        },
+      {
+        "tab": "Connections",
+        "anchors": [
+            {
+             "anchor": "Payment Methods",
+              "icon": "money-check",
+              "groups": [
+                {
+                    "group": "Payment Methods",
+                    "pages": [
+                      "docs/connections/payment-methods/overview",
+                      "docs/connections/payment-methods/available-payment-methods",
+                      {
+                        "group": "Guides",
+                        "pages": [
+                          "docs/connections/payment-methods/guides/card/overview",
+                          "docs/connections/payment-methods/guides/apple-pay/overview"
+                        ]
+                      }
+                  ]
+                }
+             ]
+            },
+            {
+              "anchor": "Fraud Providers",
+              "icon": "shield",
+              "groups": [
+                {
+                  "group": "Fraud Providers",
+                  "pages": [
+                    "docs/connections/fraud-providers/overview",
+                    {
+                      "group": "Guides",
+                      "pages": [
+                        "docs/connections/fraud-providers/guides/forter",
+                        "docs/connections/fraud-providers/guides/riskified"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+        ]
+      },
+      {
+        "tab": "Knowledge Base",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "docs/api/v2.3/introduction/getting-started",
+              "docs/api/v2.3/introduction/authentication",
+              "docs/api/v2.3/introduction/api-responses"
+            ]
+          }
+        ]
+      }
     ]
   },
   "logo": {
     "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg",
+    "dark": "/logo/light.svg",
     "href": "https://primer.io/"
   },
   "appearance": {
     "default": "light"
   },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  },
   "background": {
+    "decoration": "grid",
     "color": {
-      "light": "#f9f5ff"
+      "light": "#ffffff"
     }
   },
   "navbar": {
@@ -248,8 +346,8 @@
   "fonts": {
     "heading": {
       "family": "Interdisplay",
-      "weight": 500,
       "format": "woff2",
+      "weight": 500,
       "source": "https://cdn.prod.website-files.com/65bcc4714739c54deeb9bac7/675aeb4efaabe1ba38ca0132_InterDisplay-Medium.woff2"
     }
   }
