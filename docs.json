@@ -321,8 +321,12 @@
   "appearance": {
     "default": "light"
   },
+  "styling": {
+    "eyebrows": "breadcrumbs"
+  }
+  ,
   "background": {
-    "decoration": "gradient",
+    "decoration": "grid",
     "color": {
       "light": "#ffffff"
     }
@@ -341,6 +345,7 @@
     }
   },
   "fonts": {
+    "weight": 500,
     "heading": {
       "family": "Interdisplay",
       "format": "woff2",
