@@ -493,12 +493,7 @@
                   {
                     "group": "Guides",
                     "pages": [
-                      {
-                        "icon": "book-open",
-                        "pages": [
-                          "docs/connections/workflow-apps/guides/mailchimp"
-                        ]
-                      },
+                      "docs/connections/workflow-apps/guides/mailchimp",
                       "docs/connections/workflow-apps/guides/slack"
                     ]
                   }
