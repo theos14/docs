@@ -2,201 +2,215 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Primer",
-  "colors": {
-    "primary": "#ffa49b",
-    "light": "#ffa49b",
-    "dark": "#1b1a1a"
-  },
+  "colors": {"primary": "#ffa49b", "light": "#ffa49b", "dark": "#1b1a1a"},
   "favicon": "/favicon.png",
   "navigation": {
     "tabs": [
-      {
-        "tab": "Home",
-        "pages": ["home1"]
-      },
+      { "tab": "Home", "pages": ["home1"] },
       {
         "tab": "Documentation",
         "anchors": [
           {
             "anchor": "Getting started",
             "icon": "book-open",
-            "groups": [{
+            "groups": [
+              {
                 "group": "Getting Started",
                 "pages": [
-                "docs/get-started/welcome-to-primer",
-                "docs/get-started/set-up-a-workflow",
-                "docs/get-started/connect-a-processor",
-                "docs/get-started/use-cases",
-                "docs/get-started/best-practices"
-              ]
-            }]
+                  "docs/get-started/welcome-to-primer"  ,
+                  "docs/get-started/set-up-a-workflow"  ,
+                  "docs/get-started/connect-a-processor",
+                  "docs/get-started/use-cases"          ,
+                  "docs/get-started/best-practices"
+                ]
+              }
+            ]
           },
           {
             "anchor": "Concepts",
             "icon": "brain",
-            "groups": [{
-              "group": "Concepts",
-              "pages": [
-              "docs/concepts/overview",
-              "docs/concepts/primer-payment",
-              "docs/concepts/payment-lifecycle",
-              "docs/concepts/metrics",
+            "groups": [
               {
-                "group": "Decline Codes",
+                "group": "Concepts",
                 "pages": [
-                  "docs/concepts/decline-codes/overview",
-                  "docs/concepts/decline-codes/mapping-standard"
+                  "docs/concepts/overview",
+                  "docs/concepts/primer-payment",
+                  "docs/concepts/payment-lifecycle",
+                  "docs/concepts/metrics",
+                  {
+                    "group": "Decline Codes",
+                    "pages": [
+                      "docs/concepts/decline-codes/overview"        ,
+                      "docs/concepts/decline-codes/mapping-standard"
+                    ]
+                  },
+                  "docs/concepts/currencies",
+                  "docs/concepts/filters"
                 ]
-              },
-              "docs/concepts/currencies",
-              "docs/concepts/filters"
+              }
             ]
-            }]
           },
           {
             "anchor": "Payment Operations",
             "icon": "money-bills",
-            "groups": [{
-              "group": "Payment Operations",
-              "pages": [
-              "docs/payment-operations/overview",
-              "docs/payment-operations/capture",
-              "docs/payment-operations/cancel",
-              "docs/payment-operations/refund",
-              "docs/payment-operations/adjust-authorization",
-              "docs/payment-operations/search"
-            ]
-            }]
-          },
-          {
-           "anchor": "Checkout",
-            "icon": "cart-shopping",
-            "groups": [{
-              "group": "Checkout",
-              "pages": [
-              "docs/checkout/overview",
-              "docs/checkout/universal-checkout",
-              "docs/checkout/client-session",
+            "groups": [
               {
-                "group": "Drop-In Checkout",
+                "group": "Payment Operations",
                 "pages": [
-                  "docs/checkout/drop-in/overview",
-                  "docs/checkout/drop-in/customization"
-                ]
-              },
-              "docs/checkout/headless",
-              {
-                "group": "Advanced",
-                "pages": [
-                  "docs/checkout/advanced/content-security-policy"
+                  "docs/payment-operations/overview"            ,
+                  "docs/payment-operations/capture"             ,
+                  "docs/payment-operations/cancel"              ,
+                  "docs/payment-operations/refund"              ,
+                  "docs/payment-operations/adjust-authorization",
+                  "docs/payment-operations/search"
                 ]
               }
             ]
-            }]        
           },
           {
-           "anchor": "Features",
-            "icon": "layer-group",
-            "groups": [{
-              "group": "Features",
-              "pages": [
-              "docs/features/overview",
-              "docs/features/save-payment-methods",
-              "docs/features/fingerprinting",
-              "docs/features/surcharge",
-              "docs/features/fallbacks",
-              "docs/features/fraud-checks",
-              "docs/features/cobadged-cards",
-              "docs/features/advanced-metadata-mapper",
-              "docs/features/three-d-secure",
-              "docs/features/network-tokenization"
-            ]
-            }]
-          },
-          {
-           "anchor": "Disputes",
-            "icon": "triangle-exclamation",
-            "groups": [{
-              "group": "Disputes",
-              "pages": [
-                "docs/disputes/overview",
-                "docs/disputes/dispute-lifecycle",
-                "docs/disputes/manage-disputes"
-            ]
-            }]
-          },
-          {
-           "anchor": "Workflows",
-            "icon": "arrow-progress",
-            "groups": [{
-              "group": "Workflows",
-              "pages": [
-              "docs/workflows/overview",
-              "docs/workflows/create-a-workflow",
+            "anchor": "Checkout",
+            "icon": "cart-shopping",
+            "groups": [
               {
-                "group": "Utilities",
+                "group": "Checkout",
+                "pages": [
+                  "docs/checkout/overview",
+                  "docs/checkout/universal-checkout",
+                  "docs/checkout/client-session",
+                  {
+                    "group": "Drop-In Checkout",
+                    "pages": [
+                      "docs/checkout/drop-in/overview"     ,
+                      "docs/checkout/drop-in/customization"
+                    ]
+                  },
+                  "docs/checkout/headless",
+                  {
+                    "group": "Advanced",
+                    "pages": ["docs/checkout/advanced/content-security-policy"]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Features",
+            "icon": "layer-group",
+            "groups": [
+              {
+                "group": "Features",
+                "pages": [
+                  "docs/features/overview"                ,
+                  "docs/features/save-payment-methods"    ,
+                  "docs/features/fingerprinting"          ,
+                  "docs/features/surcharge"               ,
+                  "docs/features/fallbacks"               ,
+                  "docs/features/fraud-checks"            ,
+                  "docs/features/cobadged-cards"          ,
+                  "docs/features/advanced-metadata-mapper",
+                  "docs/features/three-d-secure"          ,
+                  "docs/features/network-tokenization"
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Disputes",
+            "icon": "triangle-exclamation",
+            "groups": [
+              {
+                "group": "Disputes",
+                "pages": [
+                  "docs/disputes/overview"         ,
+                  "docs/disputes/dispute-lifecycle",
+                  "docs/disputes/manage-disputes"
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Workflows",
+            "icon": "arrow-progress",
+            "groups": [
+              {
+                "group": "Workflows",
+                "pages": [
+                  "docs/workflows/overview",
+                  "docs/workflows/create-a-workflow",
+                  {
+                    "group": "Utilities",
+                    "pages": [
+                      "docs/workflows/utilities/conditions",
+                      "docs/workflows/utilities/split"
+                    ]
+                  },
+                  "docs/workflows/workflow-validation",
+                  "docs/workflows/workflow-run-failed-webhook",
+                  "docs/workflows/export-import",
+                  "docs/workflows/templates",
+                  "docs/workflows/monitoring-workflows",
+                  {
+                    "group": "Apps",
+                    "pages": [
+                      {
+                        "group": "Native Apps",
+                        "pages": [
+                          "docs/workflows/apps/native-apps/payments-app"    ,
+                          "docs/workflows/apps/native-apps/vault-app"       ,
+                          "docs/workflows/apps/native-apps/monitors-app"    ,
+                          "docs/workflows/apps/native-apps/disputes-app"    ,
+                          "docs/workflows/apps/native-apps/emails-app"      ,
+                          "docs/workflows/apps/native-apps/web-requests-app"
+                        ]
+                      },
+                      {
+                        "group": "3rd Party Apps",
+                        "pages": [
+                          "docs/workflows/apps/third-party-apps/overview"
+                        ]
+                      }
+                    ]
+                  },
+                  "docs/workflows/use-cases"
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Observability",
+            "icon": "chart-simple",
+            "groups": [
+              {
+                "group": "Observability",
+                "pages": ["docs/observability/overview"]
+              }
+            ]
+          },
+          {
+            "anchor": "Reconciliation",
+            "icon": "file-lines",
+            "groups": [
+              {
+                "group": "Reconciliation",
                 "pages": [
                   "docs/workflows/utilities/conditions",
                   "docs/workflows/utilities/split"
-
                 ]
-              },
-              "docs/workflows/workflow-validation",
-              "docs/workflows/workflow-run-failed-webhook",
-              "docs/workflows/export-import",
-              "docs/workflows/templates",
-              "docs/workflows/monitoring-workflows",
-              {
-                "group": "Apps",
-                "pages": [
-                  {
-                    "group": "Native Apps",
-                    "pages": [
-                      "docs/workflows/apps/native-apps/payments-app",
-                      "docs/workflows/apps/native-apps/vault-app",
-                      "docs/workflows/apps/native-apps/monitors-app",
-                      "docs/workflows/apps/native-apps/disputes-app",
-                      "docs/workflows/apps/native-apps/emails-app",
-                      "docs/workflows/apps/native-apps/web-requests-app"
-                    ]
-                  },
-                  {
-                    "group": "3rd Party Apps",
-                    "pages": [
-                      "docs/workflows/apps/third-party-apps/overview"
-                    ]
-                  }
-                ]
-              },
-              "docs/workflows/use-cases"
+              }
             ]
-            }]
           },
           {
-           "anchor": "Observability",
-            "icon": "chart-simple",
-            "groups": [{
-              "group": "Observability",
-              "pages": ["docs/observability/overview"]
-            }]
-          },
-          {
-           "anchor": "Reconciliation",
-            "icon": "file-lines",
-            "groups": [{
-              "group": "Reconciliation",
-              "pages": ["docs/workflows/utilities/conditions",
-                  "docs/workflows/utilities/split"]
-            }]
-          },
-          {
-           "anchor": "Monitors",
+            "anchor": "Monitors",
             "icon": "wave-pulse",
-            "groups": [{
-              "group": "Monitors",
-              "pages": ["docs/workflows/utilities/conditions",
-                  "docs/workflows/utilities/split"]
-            }]
+            "groups": [
+              {
+                "group": "Monitors",
+                "pages": [
+                  "docs/workflows/utilities/conditions",
+                  "docs/workflows/utilities/split"
+                ]
+              }
+            ]
           }
         ]
       },
@@ -213,10 +227,10 @@
                   {
                     "group": "Getting Started",
                     "pages": [
-                      "docs/api/v2.3/getting-started/overview",
-                      "docs/api/v2.3/getting-started/authentication",
-                      "docs/api/v2.3/getting-started/api-responses",
-                      "docs/api/v2.3/getting-started/idempotency-key",
+                      "docs/api/v2.3/getting-started/overview"            ,
+                      "docs/api/v2.3/getting-started/authentication"      ,
+                      "docs/api/v2.3/getting-started/api-responses"       ,
+                      "docs/api/v2.3/getting-started/idempotency-key"     ,
                       "docs/api/v2.3/getting-started/loyalty-transactions"
                     ]
                   }
@@ -279,7 +293,7 @@
                       {
                         "group": "Dispute Chargeback Webhooks",
                         "pages": [
-                          "docs/api/v2.3/webhooks/dispute-webhooks/dispute-open"  ,
+                          "docs/api/v2.3/webhooks/dispute-webhooks/dispute-open",
                           "docs/api/v2.3/webhooks/dispute-webhooks/dispute-status"
                         ]
                       }
@@ -294,7 +308,7 @@
               }
             ]
           },
-              {
+          {
             "version": "v2.4",
             "anchors": [
               {
@@ -304,10 +318,10 @@
                   {
                     "group": "Getting Started",
                     "pages": [
-                      "docs/api/v2.4/getting-started/overview",
-                      "docs/api/v2.4/getting-started/authentication",
-                      "docs/api/v2.4/getting-started/api-responses",
-                      "docs/api/v2.4/getting-started/idempotency-key",
+                      "docs/api/v2.4/getting-started/overview"            ,
+                      "docs/api/v2.4/getting-started/authentication"      ,
+                      "docs/api/v2.4/getting-started/api-responses"       ,
+                      "docs/api/v2.4/getting-started/idempotency-key"     ,
                       "docs/api/v2.4/getting-started/loyalty-transactions"
                     ]
                   }
@@ -331,8 +345,8 @@
                       {
                         "group": "Payments API",
                         "pages": [
-                          "docs/api/v2.4/payments-api/search",
-                          "docs/api/v2.4/payments-api/create-payment",
+                          "docs/api/v2.4/payments-api/search"           ,
+                          "docs/api/v2.4/payments-api/create-payment"   ,
                           "docs/api/v2.4/payments-api/authorize-payment"
                         ]
                       },
@@ -384,116 +398,114 @@
         ]
       },
       {
-          "tab": "SDKs",
-          "versions": [
-            {
-              "version": "latest",
-              "anchors": [
-                {
-                  "anchor": "Javascript",
-                  "pages": [
-                    "test/js/create",
-                    "test/js/edit"
-                  ]
-                },
-                {
-                  "anchor": "Python",
-                  "pages": [
-                    "test/python/create",
-                    "test/python/edit"
-                  ]
-                }
-              ]
-            }
-          ]
-        },
+        "tab": "SDKs",
+        "versions": [
+          {
+            "version": "latest",
+            "anchors": [
+              {
+                "anchor": "Javascript",
+                "pages": ["test/js/create", "test/js/edit"]
+              },
+              {
+                "anchor": "Python",
+                "pages": ["test/python/create", "test/python/edit"]
+              }
+            ]
+          }
+        ]
+      },
       {
         "tab": "Connections",
         "anchors": [
-            {
-             "anchor": "Payment Methods",
-              "icon": "money-check",
-              "groups": [
-                {
-                    "group": "Payment Methods",
+          {
+            "anchor": "Payment Methods",
+            "icon": "money-check",
+            "groups": [
+              {
+                "group": "Payment Methods",
+                "pages": [
+                  "docs/connections/payment-methods/overview",
+                  "docs/connections/payment-methods/available-payment-methods",
+                  {
+                    "group": "Guides",
                     "pages": [
-                      "docs/connections/payment-methods/overview",
-                      "docs/connections/payment-methods/available-payment-methods",
+                      "docs/connections/payment-methods/guides/card/overview",
                       {
-                        "group": "Guides",
+                        "group": "Apple Pay",
                         "pages": [
-                          "docs/connections/payment-methods/guides/card/overview",
-                          {
-                            "group": "Apple Pay",
-                            "pages": ["docs/connections/payment-methods/guides/apple-pay/overview","docs/connections/payment-methods/guides/apple-pay/direct-integration"]
-                          }
-                          
+                          "docs/connections/payment-methods/guides/apple-pay/overview",
+                          "docs/connections/payment-methods/guides/apple-pay/direct-integration"
                         ]
                       }
-                  ]
-                }
-             ]
-            },
-            {
-              "anchor": "Fraud Providers",
-              "icon": "shield",
-              "groups": [
-                {
-                  "group": "Fraud Providers",
-                  "pages": [
-                    "docs/connections/fraud-providers/overview",
-                    {
-                      "group": "Guides",
-                      "pages": [
-                        "docs/connections/fraud-providers/guides/forter",
-                        "docs/connections/fraud-providers/guides/riskified"
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              "anchor": "Payment Service Providers",
-              "icon": "gears",
-              "groups": [
-                {
-                  "group": "Payment Service Providers",
-                  "pages": [
-                    "docs/connections/psps/overview",
-                    {
-                      "group": "Guides",
-                      "pages": [
-                        "docs/connections/psps/guides/adyen",
-                        "docs/connections/psps/guides/stripe"
-                      ]
-                    }
-                  ]
-                }
-              ]
-            },
-           {
-              "anchor": "Workflow Apps",
-              "icon": "grid-2-plus",
-              "groups": [
-                {
-                  "group": "Workflow Apps",
-                  "pages": [
-                    "docs/connections/workflow-apps/overview",
-                    {
-                      "group": "Guides",
-                      "pages": [
-                        {
-                          "icon": "book-open",
-                          "pages": ["docs/connections/workflow-apps/guides/mailchimp"]
-                        },
-                        "docs/connections/workflow-apps/guides/slack"
-                      ]
-                    }
-                  ]
-                }
-              ]
-            }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Fraud Providers",
+            "icon": "shield",
+            "groups": [
+              {
+                "group": "Fraud Providers",
+                "pages": [
+                  "docs/connections/fraud-providers/overview",
+                  {
+                    "group": "Guides",
+                    "pages": [
+                      "docs/connections/fraud-providers/guides/forter"   ,
+                      "docs/connections/fraud-providers/guides/riskified"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Payment Service Providers",
+            "icon": "gears",
+            "groups": [
+              {
+                "group": "Payment Service Providers",
+                "pages": [
+                  "docs/connections/psps/overview",
+                  {
+                    "group": "Guides",
+                    "pages": [
+                      "docs/connections/psps/guides/adyen" ,
+                      "docs/connections/psps/guides/stripe"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "anchor": "Workflow Apps",
+            "icon": "grid-2-plus",
+            "groups": [
+              {
+                "group": "Workflow Apps",
+                "pages": [
+                  "docs/connections/workflow-apps/overview",
+                  {
+                    "group": "Guides",
+                    "pages": [
+                      {
+                        "icon": "book-open",
+                        "pages": [
+                          "docs/connections/workflow-apps/guides/mailchimp"
+                        ]
+                      },
+                      "docs/connections/workflow-apps/guides/slack"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         ]
       },
       {
@@ -503,7 +515,7 @@
             "group": "Introduction",
             "pages": [
               "docs/api/v2.3/introduction/getting-started",
-              "docs/api/v2.3/introduction/authentication",
+              "docs/api/v2.3/introduction/authentication" ,
               "docs/api/v2.3/introduction/api-responses"
             ]
           }
@@ -512,38 +524,26 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/light.svg",
-    "href": "https://primer.io/"
+    "light": "/logo/light.svg"   ,
+    "dark" : "/logo/light.svg"   ,
+    "href" : "https://primer.io/"
   },
-  "appearance": {
-    "default": "light"
-  },
-  "styling": {
-    "eyebrows": "breadcrumbs"
-  },
-  "background": {
-    "decoration": "grid",
-    "color": {
-      "light": "#ffffff"
-    }
-  },
+  "appearance": {"default": "light"},
+  "styling": {"eyebrows": "breadcrumbs"},
+  "background": { "decoration": "grid", "color": {"light": "#ffffff"} },
   "navbar": {
     "primary": {
-      "type": "button",
-      "label": "Contact support",
-      "href": "https://primer.io/contact-us"
+      "type" : "button"                      ,
+      "label": "Contact support"             ,
+      "href" : "https://primer.io/contact-us"
     },
     "links": [
-      {
-        "label": "Contact Sales",
-        "href": "https://primer.io/contact-us"
-      }
+      {"label": "Contact Sales", "href": "https://primer.io/contact-us"}
     ]
   },
   "footer": {
     "socials": {
-      "youtube": "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
+      "youtube" : "https://www.youtube.com/channel/UCblj8Ya4PGjRbKVXmVwKyeQ",
       "linkedin": "https://www.linkedin.com/company/primerapi/"
     }
   },
